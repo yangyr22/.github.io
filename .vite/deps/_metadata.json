@@ -1,0 +1,133 @@
+{
+  "hash": "2800751b",
+  "configHash": "ea17a0c1",
+  "lockfileHash": "e3b0c442",
+  "browserHash": "0d2748ec",
+  "optimized": {
+    "three": {
+      "src": "../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "695eafa3",
+      "needsInterop": false
+    },
+    "vite": {
+      "src": "../../node_modules/vite/dist/node/index.js",
+      "file": "vite.js",
+      "fileHash": "c64af433",
+      "needsInterop": false
+    },
+    "three/addons/controls/OrbitControls.js": {
+      "src": "../../node_modules/three/examples/jsm/controls/OrbitControls.js",
+      "file": "three_addons_controls_OrbitControls__js.js",
+      "fileHash": "004ff711",
+      "needsInterop": false
+    },
+    "three/addons/environments/RoomEnvironment.js": {
+      "src": "../../node_modules/three/examples/jsm/environments/RoomEnvironment.js",
+      "file": "three_addons_environments_RoomEnvironment__js.js",
+      "fileHash": "c33b1a66",
+      "needsInterop": false
+    },
+    "three/addons/loaders/GLTFLoader.js": {
+      "src": "../../node_modules/three/examples/jsm/loaders/GLTFLoader.js",
+      "file": "three_addons_loaders_GLTFLoader__js.js",
+      "fileHash": "5a33e912",
+      "needsInterop": false
+    },
+    "three/addons/exporters/USDZExporter.js": {
+      "src": "../../node_modules/three/examples/jsm/exporters/USDZExporter.js",
+      "file": "three_addons_exporters_USDZExporter__js.js",
+      "fileHash": "6482fc75",
+      "needsInterop": false
+    },
+    "three/addons/libs/lil-gui.module.min.js": {
+      "src": "../../node_modules/three/examples/jsm/libs/lil-gui.module.min.js",
+      "file": "three_addons_libs_lil-gui__module__min__js.js",
+      "fileHash": "46b9f702",
+      "needsInterop": false
+    },
+    "three/addons/objects/Water2Mesh.js": {
+      "src": "../../node_modules/three/examples/jsm/objects/Water2Mesh.js",
+      "file": "three_addons_objects_Water2Mesh__js.js",
+      "fileHash": "33119d97",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "watch-WS5C6MUA": {
+      "file": "watch-WS5C6MUA.js"
+    },
+    "rollup-K2DXRWK7": {
+      "file": "rollup-K2DXRWK7.js"
+    },
+    "chunk-3J72CD7C": {
+      "file": "chunk-3J72CD7C.js"
+    },
+    "node_http-GDIYQ74I": {
+      "file": "node_http-GDIYQ74I.js"
+    },
+    "node_https-QBBQ6FT2": {
+      "file": "node_https-QBBQ6FT2.js"
+    },
+    "dep-D-7KCb9p-AU5QPDDD": {
+      "file": "dep-D-7KCb9p-AU5QPDDD.js"
+    },
+    "dep-C6EFp3uH-5UJCFHRB": {
+      "file": "dep-C6EFp3uH-5UJCFHRB.js"
+    },
+    "postcss-3AVNWGYI": {
+      "file": "postcss-3AVNWGYI.js"
+    },
+    "dep-Ba1kN6Mp-F7GBYAWY": {
+      "file": "dep-Ba1kN6Mp-F7GBYAWY.js"
+    },
+    "chunk-PDIQZD67": {
+      "file": "chunk-PDIQZD67.js"
+    },
+    "chunk-UPV5HQY4": {
+      "file": "chunk-UPV5HQY4.js"
+    },
+    "__vite-optional-peer-dep_lightningcss_vite-LUUMBJI5": {
+      "file": "__vite-optional-peer-dep_lightningcss_vite-LUUMBJI5.js"
+    },
+    "node_http2-W64H5OP4": {
+      "file": "node_http2-W64H5OP4.js"
+    },
+    "chunk-4CGW74US": {
+      "file": "chunk-4CGW74US.js"
+    },
+    "chunk-SEQ2BS34": {
+      "file": "chunk-SEQ2BS34.js"
+    },
+    "chunk-LKHS7QDZ": {
+      "file": "chunk-LKHS7QDZ.js"
+    },
+    "chunk-FATLNOVU": {
+      "file": "chunk-FATLNOVU.js"
+    },
+    "chunk-DM6VNHCA": {
+      "file": "chunk-DM6VNHCA.js"
+    },
+    "chunk-EF6WBC6R": {
+      "file": "chunk-EF6WBC6R.js"
+    },
+    "chunk-AW2EMQN5": {
+      "file": "chunk-AW2EMQN5.js"
+    },
+    "chunk-ZHYXMNUQ": {
+      "file": "chunk-ZHYXMNUQ.js"
+    },
+    "chunk-2FRTOIJ3": {
+      "file": "chunk-2FRTOIJ3.js"
+    },
+    "chunk-PSMGTXPV": {
+      "file": "chunk-PSMGTXPV.js"
+    },
+    "chunk-7ZCAHXB5": {
+      "file": "chunk-7ZCAHXB5.js"
+    },
+    "chunk-ZSMWDLMK": {
+      "file": "chunk-ZSMWDLMK.js"
+    }
+  }
+}
