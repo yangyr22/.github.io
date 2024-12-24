@@ -1,0 +1,271 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: www.cadnav.com
+
+newmtl WindowBlue1__WindowBlue1
+	Ns 56.4386
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.2000 0.2000 0.2000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka WindowBlue1.jpg
+	map_Kd WindowBlue1.jpg
+	map_bump WindowBlue1.jpg
+	bump WindowBlue1.jpg
+
+newmtl LogEdgeWeathered__TreeLogEdgeWeathered_jpg
+	Ns 43.2193
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.1114 0.1114 0.1114
+	Ke 0.0000 0.0000 0.0000
+	map_Ka TreeLogEdgeWeathered.jpg
+	map_Kd TreeLogEdgeWeathered.jpg
+	map_Ks TreeLogEdgeWeathered.jpg
+	map_bump TreeLogEdgeWeathered.jpg
+	bump TreeLogEdgeWeathered.jpg
+
+newmtl LogEdgeWeathered__Wood_jpg
+	Ns 49.0689
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.1247 0.1247 0.1247
+	Ke 0.0000 0.0000 0.0000
+	map_Ka TreeLogEdgeWeathered.jpg
+	map_Kd TreeLogEdgeWeathered.jpg
+	map_Ks TreeLogEdgeWeathered.jpg
+	map_bump TreeLogEdgeWeathered.jpg
+	bump TreeLogEdgeWeathered.jpg
+
+newmtl LogEdgeWeathered__Wood_jpg_002
+	Ns 49.0689
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.1145 0.1145 0.1145
+	Ke 0.0000 0.0000 0.0000
+	map_Ka TreeLogEdgeWeathered.jpg
+	map_Kd TreeLogEdgeWeathered.jpg
+	map_Ks TreeLogEdgeWeathered.jpg
+	map_bump TreeLogEdgeWeathered.jpg
+	bump TreeLogEdgeWeathered.jpg
+
+newmtl Wood__Wood_jpg
+	Ns 43.2193
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.0800 0.0800 0.0800
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Wood.jpg
+	map_Kd Wood.jpg
+	map_Ks Wood.jpg
+	map_bump Wood.jpg
+	bump Wood.jpg
+
+newmtl Wood_001
+	Ns 56.4386
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.1027 0.1027 0.1027
+	Ke 0.4196 0.4196 0.4196
+	map_Ka Wood.jpg
+	map_Kd Wood.jpg
+	map_Ks Wood.jpg
+	map_bump Wood.jpg
+	bump Wood.jpg
+
+newmtl Wood_001__Wood_jpg
+	Ns 49.0689
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.0722 0.0722 0.0722
+	Ke 0.5686 0.5686 0.5686
+	map_Ka Wood.jpg
+	map_Kd Wood.jpg
+	map_Ks Wood.jpg
+	map_bump Wood.jpg
+	bump Wood.jpg
+
+newmtl Brick__GreyBricks_jpg
+	Ns 56.4386
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.0682 0.0682 0.0682
+	Ke 0.0000 0.0000 0.0000
+	map_Ka GreyBricks2.jpg
+	map_Kd GreyBricks2.jpg
+	map_Ks GreyBricks2.jpg
+	map_bump GreyBricks2.jpg
+	bump GreyBricks2.jpg
+
+newmtl RustedMetal__Rusted_Metal_jpg
+	Ns 49.0689
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.2000 0.2000 0.2000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Rusted Metal.jpg
+	map_Kd Rusted Metal.jpg
+	map_bump Rusted Metal.jpg
+	bump Rusted Metal.jpg
+
+newmtl WindowBlue2__WindowsBlue2_jpg
+	Ns 56.4386
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.2000 0.2000 0.2000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka WindowsBlue2.jpg
+	map_Kd WindowsBlue2.jpg
+	map_bump WindowsBlue2.jpg
+	bump WindowsBlue2.jpg
+
+newmtl DoorType1_2__DoorType1_2_jpg
+	Ns 43.2193
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.0800 0.0800 0.0800
+	Ke 0.0000 0.0000 0.0000
+	map_Ka DoorType1_2.jpg
+	map_Kd DoorType1_2.jpg
+	map_Ks DoorType1_2.jpg
+	map_bump DoorType1_2.jpg
+	bump DoorType1_2.jpg
+
+newmtl Plaster__PlasterLarge_jpg
+	Ns 43.2193
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.0980 0.0980 0.0980
+	Ke 0.0000 0.0000 0.0000
+	map_Ka PlasterLarge.jpg
+	map_Kd PlasterLarge.jpg
+	map_Ks PlasterLarge.jpg
+	map_bump PlasterLarge.jpg
+	bump PlasterLarge.jpg
+
+newmtl GreyStone2__GreyStone2_jpg
+	Ns 43.2193
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.0682 0.0682 0.0682
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Stone.jpg
+	map_Kd Stone.jpg
+	map_Ks Stone.jpg
+	map_bump Stone.jpg
+	bump Stone.jpg
+
+newmtl Stone__Stone_jpg
+	Ns 49.0689
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.0784 0.0784 0.0784
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Stone.jpg
+	map_Kd Stone.jpg
+	map_Ks Stone.jpg
+	map_bump Stone.jpg
+	bump Stone.jpg
+
+newmtl GreyBrick2__GreyBricks2_jpg
+	Ns 23.2193
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.1467 0.1467 0.1467
+	Ke 0.0000 0.0000 0.0000
+	map_Ka GreyBricks2.jpg
+	map_Kd GreyBricks2.jpg
+	map_Ks GreyBricks2.jpg
+	map_bump GreyBricks2.jpg
+	bump GreyBricks2.jpg
+
+newmtl RoofTiles__RoofTiles_jpg
+	Ns 43.2193
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.9600 0.9600 0.9600
+	Ks 0.1514 0.1514 0.1514
+	Ke 0.0000 0.0000 0.0000
+	map_Ka RoofTiles.jpg
+	map_Kd RoofTiles.jpg
+	map_Ks RoofTiles.jpg
+	map_bump RoofTiles.jpg
+	bump RoofTiles.jpg
