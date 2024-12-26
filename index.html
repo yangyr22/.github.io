@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Rouge+Script&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Game</title>
+    <style>
+        body { margin: 0; }
+        #EmptyContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0); /* Semi-transparent background */
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+        }
+        #buttonContainer {
+            position: fixed;
+            top: 150px;
+            left: 18%;
+            width: 23.5%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0); /* Semi-transparent background */
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+            z-index: 10;
+        }
+        #buttonContainer button {
+            width: 80%;
+            margin-bottom: 50px;
+            padding: 10px;
+            font-size: 32px;
+            font-family: "Lobster", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            color: white;
+            background: url('house/button.png') no-repeat center center; 
+            background-size: cover;
+            border: none;
+            cursor: pointer; 
+        }
+        canvas {
+            display: block;
+            position: absolute;
+            /* left: 41.5%; */
+            width: 100%; /* Full width minus button container width */
+            height: 100%;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <div id="EmptyContainer">
+    </div>
+    <div id="buttonContainer">
+        <button id="startButton">Start new game</button>
+        <button id="loadButton">Load</button>
+        <button id="optionsButton">Options</button>
+        <button id="quitButton">Quit</button>
+    </div>
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', function() {
+          const optionsButton = document.getElementById('optionsButton');
+          if (optionsButton) {
+            optionsButton.addEventListener('click', function() {
+              window.location.href = 'options.html';
+            });
+          } else {
+            console.error('Element with id "optionsButton" not found.');
+          }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+          const optionsButton = document.getElementById('startButton');
+          if (optionsButton) {
+            optionsButton.addEventListener('click', function() {
+              window.location.href = 'start.html';
+            });
+          } else {
+            console.error('Element with id "startButton" not found.');
+          }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+    const optionsButton = document.getElementById('startButton');
+    if (optionsButton) {
+        optionsButton.addEventListener('click', function() {
+            const menObject = scene.getObjectByName('medieval-house-2', true);
+            if (menObject) {
+                menObject.rotation.y = 0;
+                const scaleUp = () => {
+                    menObject.scale.x += 0.01;
+                    menObject.scale.y += 0.01;
+                    menObject.scale.z += 0.01;
+                    if (menObject.scale.x < 2) {
+                        requestAnimationFrame(scaleUp);
+                    }
+                };
+                requestAnimationFrame(scaleUp);
+            }
+        });
+    } else {
+        console.error('Element with id "startButton" not found.');
+    }
+});
+    </script>
+    <audio id="mainpage" src="audio/mainpage.ogg" autoplay loop></audio>
+    <script>
+        const MainPageAudio = document.getElementById("mainpage");
+        MainPageAudio.play();
+    </script>
+    <script type="module" src="main.js"></script>
+    
+    
+</body>
+</html>

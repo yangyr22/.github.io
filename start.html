@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Lobster&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Game</title>
+    <style>
+        body { margin: 0; }
+        canvas {
+            display: block;
+            position: absolute;
+            width: 100%; /* Full width minus button container width */
+            height: 100%;
+            z-index: 5;
+        }
+        #minimapDiv{
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            height: 200px;
+            width: 200px;
+            background-image: url('minimap/room1.png'); /* 设置背景图片 */
+            background-size: cover; /* 覆盖整个div */
+            background-position: center;
+            border: 2px solid gray;
+            padding: 10px;
+            z-index: 10;
+        }
+        #cameraArrow{
+            position: absolute; 
+            width: 0; 
+            height: 0; 
+            color: green;
+            border-left: 10px solid transparent; 
+            border-right: 10px solid transparent; 
+            border-bottom: 10px solid green;
+        }
+        
+        #ghostArrow{
+            position: absolute; 
+            width: 0; 
+            height: 0; 
+            color: red;
+            border-left: 10px solid transparent; 
+            border-right: 10px solid transparent; 
+            border-bottom: 10px solid red;
+            display:none;
+        }        
+        #chairArrow{
+            position: absolute; 
+            width: 10px; 
+            height: 10px; 
+            background-color: red;
+            display:none;
+        }
+        .selectDiv {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 500px;
+            width: 800px;
+            transform: translate(-50%, -50%);
+            background-image: url('global/box.png');
+            background-size: 100% 100%;
+            background-position: center; /* 居中显示 */
+            background-repeat: no-repeat; /* 不重复图片 */
+            font-size: 32px;
+            font-family: "Lobster", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            padding: 10px;
+            z-index: 10;
+            display: flex; /* 启用flex布局 */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            display: none; /* 默认不显示对话框 */
+        }
+        .selectDiv button {
+            margin: 10px;
+            padding: 10px 20px;
+            width: 100%;
+            font-size: 32px;
+            font-family: "Lobster", sans-serif;
+            cursor: pointer;
+            background-color: rgba(88, 88, 88, 0);
+            border-color: rgba(88, 88, 88, 0);
+        }
+        .selectDiv button:hover{
+            background-image: linear-gradient(to right, rgba(231, 143, 41, 0.3), rgba(231, 143, 41, 1),rgba(231, 143, 41, 1), rgba(231, 143, 41, 0.3));
+            color: rgba(176, 176, 176, 1);
+        }
+    </style>
+</head>
+<body>
+    <audio id="open" src="audio/open.ogg" autoplay></audio>
+    <audio id="queen" src="audio/queen.ogg" loop></audio>
+    <script>
+        const openAudio = document.getElementById("open");
+        const nextAudio = document.getElementById("queen");
+    
+        openAudio.onended = function() {
+            setTimeout(function() {
+                nextAudio.play();
+            }, 1000);
+        };
+    </script>
+    <div id="minimapDiv"> 
+        <div id="cameraArrow"></div>
+        <div id="ghostArrow"></div>
+        <div id="chairArrow"></div>
+    </div>
+    <div id="room" data-param="value"></div>
+    
+    <div class="selectDiv" id="piano">
+        <div>
+            要把乐谱放到钢琴上吗？
+        </div>
+        <button id="yesButton_piano">要</button>
+        <button id="noButton_piano">再想想</button>
+    </div>
+    <div class="selectDiv" id="pianoResult">
+        <div>
+            要弹奏钢琴吗？
+        </div>
+        <button id="yesButton_piano2">要</button>
+        <button id="noButton_piano2">不要</button>
+    </div>    
+    
+    <div class="selectDiv" id="pianoResult2">
+        <div>
+            …钢琴吐出了国王发条，开始自动演奏了起来
+        </div>
+    </div>    
+    <div class="selectDiv" id="paper">
+        <div>
+            ……在墙壁裂缝的深处，能隐约看到夹着一张白纸。
+        </div>
+        <button id="yesButton_paper">抽出来</button>
+        <button id="noButton_paper">再想想</button>
+    </div>
+    <div class="selectDiv" id="paperResult">
+        <div>
+            拿到 谱子 。
+        </div>
+    </div>    
+    <div class="selectDiv" id="pumpkin">
+        <div>
+            要敲敲南瓜吗？
+        </div>
+        <button id="yesButton_pumpkin">要</button>
+        <button id="noButton_pumpkin">再想想</button>
+    </div>
+    <div class="selectDiv" id="pumpkinResult">
+        <div>
+            发出了不太悦耳的声音。
+        </div>
+    </div>    
+    
+    <div class="selectDiv" id="musicbox">
+        <div>
+            要插上发条吗？
+        </div>
+        <button id="yesButton_musicbox">要</button>
+        <button id="noButton_musicbox">再想想</button>
+    </div>
+    <div class="selectDiv" id="musicboxResult">
+        <div>
+            音乐盒运转起来了。
+        </div>
+    </div>    
+    <div class="selectDiv" id="clock">
+        <div>
+            是 时钟 吗？
+        </div>
+        <button id="yesButton_clock">是</button>
+        <button id="noButton_clock">再想想</button>
+    </div>    
+    
+    <div class="selectDiv" id="man">
+        <div>
+            是 男人 吗？
+        </div>
+        <button id="yesButton_man">是</button>
+        <button id="noButton_man">再想想</button>
+    </div>    
+    <div class="selectDiv" id="woman">
+        <div>
+            是 女人 吗？
+        </div>
+        <button id="yesButton_woman">是</button>
+        <button id="noButton_woman">再想想</button>
+    </div>    
+    <div class="selectDiv" id="mirror">
+        <div>
+            是 镜子 吗？
+        </div>
+        <button id="yesButton_mirror">是</button>
+        <button id="noButton_mirror">再想想</button>
+    </div>    
+    <div class="selectDiv" id="plant">
+        <div>
+            是 植物 吗？
+        </div>
+        <button id="yesButton_plant">是</button>
+        <button id="noButton_plant">再想想</button>
+    </div>    
+    <div class="selectDiv" id="clockResult">
+        <div>
+            女王发条从时钟里掉落出来
+        </div>
+    </div>
+    
+    <div class="selectDiv" id="clock2">
+        <div>
+            要把发条插进去吗？
+        </div>
+        <button id="yesButton_clock2">是</button>
+        <button id="noButton_clock2">再想想</button>
+    </div>   
+    <div class="selectDiv" id="clock2Result">
+        <div>
+            ……时钟已经开始滴答响了。
+        </div>
+    </div>
+    <div class="selectDiv" id="select1">
+        <div>Do you want to read the books?</div>
+        <button id="yesButton_read">是</button>
+        <button id="noButton_read">再想想</button>
+    </div>
+    <div class="selectDiv" id="Read">
+        <div>
+            她们的眼睛颜色，会因发色各异而不同
+        </div>
+        <div>
+            发色有「银·黑·金·红」4个种类，瞳色有「茶·绿·蓝·红」4个种类。
+        </div>
+        <div>
+            银发的女性，有红色的眼睛
+        </div>
+        <div>
+            茶色眼睛的女性，可能是金发也可能是红发
+        </div>
+    </div> 
+    
+    <div class="selectDiv" id="WitchDiary1">
+        <div>
+            从此以后  把每一个  来这里玩的朋友
+                大家  全部  X掉了
+        </div>
+    </div>
+    <div class="selectDiv" id="WitchDiary2">
+        <div>
+            大家  都被这个家  吃掉了
+        </div>
+    </div>
+    <div class="selectDiv" id="WitchDiary3">
+        <div>
+            但是  还不够
+        </div>
+    </div>
+    <script type="module">
+        var current_room = 1;
+        var last_room = 1;
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'KeyX') {
+                window.location.href = 'options.html';
+            }
+            if (event.code === 'Escape') {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+    <script type="module" src="/start.js"></script>
+</body>
+</html>

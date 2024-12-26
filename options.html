@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Lobster&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>3D Model and Grid Layout</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        #return-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 32px;
+            color: black;
+            cursor: pointer; /* 确保鼠标悬停时显示指针形状 */
+            background-color: cornflowerblue;
+            border-radius: 20%; /* 圆形按钮 */
+            padding-left: 25px; 
+            padding-right: 25px; 
+            padding-top: 5px; 
+            padding-bottom: 5px; 
+            text-decoration: none;
+        }
+        #return-arrow:hover{
+            background-color:blue;
+            color: #fff;
+        }
+        #model-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 25%;
+            height: 100%;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #title-container {
+            position: fixed;
+            top: 50px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            font-size: 80px;
+            font-family: "Henny Penny", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            background-color:  rgba(0, 0, 0, 0);
+            color: rgb(0, 83, 0);
+            z-index: 1;
+        }
+        #grid-container {
+            position: fixed;
+            top: 0;
+            left: 25%;
+            width: 75%;
+            height: 70%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr); 
+            padding: 10px;
+            overflow: auto;
+            background-color: #808080;
+            align-items: center; /* 垂直居中对齐所有网格项 */
+            padding-top: 200px;
+            padding-bottom: 200px;
+        }
+        .grid-item {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 200px;
+            width: 65%;
+            text-align: center;
+            cursor:pointer;
+            box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2); /* 添加立体效果 */
+            transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out; /* 平滑过渡效果 */
+        }
+        .grid-item:hover {
+            transform: translateY(5px) translateX(5px); /* 鼠标悬停时下移 */
+            box-shadow: 0 15px 15px rgba(0, 0, 0, 0.4); /* 鼠标悬停时阴影加深，增强按下效果 */
+        }
+    </style>
+</head>
+<body>
+    <audio id="backpack" src="audio\Switch02.ogg" autoplay></audio>
+    <audio id="option-game-audio" loop>
+        <source src="audio\mainpage.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="back-audio" src="audio/Save.ogg"></audio>
+    <div id="title-container">TOOLBAR</div>
+    <div id="model-container">
+        <a href="#" id="return-arrow">   &#x2190; </a>
+        <script type="module">
+            document.addEventListener('DOMContentLoaded', function() {
+            const return_arrow = document.getElementById('return-arrow');
+            if (return_arrow) {
+                return_arrow.addEventListener('click', function(event) {
+                window.history.back();
+                });
+            } else {
+                console.error('Element with id "return-arrow" not found.');
+            }
+            });
+        </script>
+        <script type="module" src="/backpack.js"></script>
+    </div>
+    <div id="grid-container">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>
+        <div class="grid-item">4</div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>
+        <div class="grid-item">7</div>
+        <div class="grid-item">8</div>
+    </div>
+</body>
+</html>
