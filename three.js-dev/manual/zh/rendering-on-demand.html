@@ -40,7 +40,7 @@ requestAnimationFrame(render);
 <p>首先我们添加<a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>, 这样当摄像机改变之后场景就可以随之渲染</p>
 <p>First we'll add in the <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> so there is something that could change
 that we can render in response to.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from 'three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
 +import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 </pre>
 <p>然后</p>
@@ -150,7 +150,7 @@ render();
 
 <p></p>
 <p>让我们加一个简单的GUI</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from 'three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 +import {GUI} from 'three/addons/libs/lil-gui.module.min.js';
 </pre>

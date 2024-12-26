@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from './node_modules/three';
 
 import { TGALoader } from 'three/addons/loaders/TGALoader.js';
 

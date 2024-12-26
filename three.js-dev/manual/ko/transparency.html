@@ -351,7 +351,7 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
     .onChange(requestRenderIfNotRequested);
 </pre>
 <p>물론 lil-gui 모듈도 불러와야죠.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from 'three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 +import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 </pre>

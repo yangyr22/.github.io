@@ -232,7 +232,7 @@ worker.postMessage({type: 'main', canvas: offscreen}, [offscreen]);
 <p><code class="notranslate" translate="no">shared-cubes.js</code> と <code class="notranslate" translate="no">offscreencanvas-worker-cubes.js</code> は前の <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> ファイルを分割したものです。</p>
 <p>まず <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> を全て <code class="notranslate" translate="no">shared-cube.js</code> にコピーします。
 次にHTMLファイルには既に <code class="notranslate" translate="no">main</code> があり、<code class="notranslate" translate="no">init</code> と <code class="notranslate" translate="no">state</code> をエクスポートする必要があるため <code class="notranslate" translate="no">main</code> の名前を <code class="notranslate" translate="no">init</code> に変更します。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from 'three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
 
 -const state = {
 +export const state = {
@@ -636,7 +636,7 @@ self.onmessage = function(e) {
 };
 </pre>
 <p>共有のthree.jsコードでは <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> をインポートして設定する必要があります。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from 'three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
 +import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 
 export function init(data) {

@@ -225,7 +225,7 @@ worker.postMessage({type: 'main', canvas: offscreen}, [offscreen]);
 </ol>
 <p><code class="notranslate" translate="no">shared-cubes.js</code> и <code class="notranslate" translate="no">offscreencanvas-worker-cubes.js</code> по сути являются разделением нашего
 предыдущего файла <code class="notranslate" translate="no">offscreencanvas-cubes.js</code>. Сначала мы копируем весь файл <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> в <code class="notranslate" translate="no">shared-cube.js</code>. Затем мы переименовываем <code class="notranslate" translate="no">main</code> в <code class="notranslate" translate="no">init</code>, так как у нас уже есть <code class="notranslate" translate="no">main</code> в нашем HTML-файле, и нам нужно экспортировать <code class="notranslate" translate="no">init</code> и состояние</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from 'three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
 
 -const state = {
 +export const state = {
@@ -624,7 +624,7 @@ self.onmessage = function(e) {
 };
 </pre>
 <p>Нам также нужно добавить <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> в начало скрипта.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from 'three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
 +import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 
 export function init(data) {

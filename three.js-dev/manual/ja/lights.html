@@ -43,7 +43,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 <p>次に <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> を追加します。
 <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> は、カメラをある点を中心に<em>軌道</em>を回転できます。
 <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> はthree.jsのオプション機能なので、importする必要があります。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from 'three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
 +import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 </pre>
 <p>これでOrbitControlsを利用できます。
@@ -378,7 +378,7 @@ scene.add(helper);
 </pre>
 <p><a href="/docs/#api/ja/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a> を使用するには、three.jsから追加のimportが必要です。
 ライトを可視化するために <a href="/docs/#api/ja/helpers/RectAreaLightHelper"><code class="notranslate" translate="no">RectAreaLightHelper</code></a> をimportします。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from 'three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
 +import {RectAreaLightUniformsLib} from 'three/addons/lights/RectAreaLightUniformsLib.js';
 +import {RectAreaLightHelper} from 'three/addons/helpers/RectAreaLightHelper.js';
 </pre>

@@ -24,7 +24,7 @@ The aim of the project is to create an easy-to-use, lightweight, cross-browser, 
 This code creates a scene, a camera, and a geometric cube, and it adds the cube to the scene. It then creates a `WebGL` renderer for the scene and camera, and it adds that viewport to the `document.body` element. Finally, it animates the cube within the scene for the camera.
 
 ```javascript
-import * as THREE from 'three';
+import * as THREE from './node_modules/three';
 
 const width = window.innerWidth, height = window.innerHeight;
 
