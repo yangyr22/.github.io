@@ -70,14 +70,13 @@ export function init_1(last_room) {
   const groundGeometry = new THREE.PlaneGeometry(1000, 1000);
   const ground1 = new THREE.Mesh(groundGeometry, groundMaterial);
   ground1.rotation.x = -Math.PI / 2; 
-  ground1.position.y = -200;
+  ground1.position.y = -199;
   scene.add(ground1);
 
   const carpetGeometry = new THREE.PlaneGeometry(600, 350);
   const carpet = new THREE.Mesh(carpetGeometry, carpetMaterial);
   carpet.rotation.x = -Math.PI / 2; 
-//   carpet.rotation.z = Math.PI / 2;
-  carpet.position.y = -199;
+  carpet.position.y = -198;
   scene.add(carpet);
 
   scene.add(createWall(new THREE.Vector2(-500, 500), new THREE.Vector2(-500, -500), WallMaterial));
