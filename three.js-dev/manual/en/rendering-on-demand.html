@@ -46,7 +46,7 @@ or the camera or giving other relevant input.</p>
 and modify it to render on demand.</p>
 <p>First we'll add in the <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> so there is something that could change
 that we can render in response to.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './three.js-dev/build/three.module.js';
 +import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 </pre>
 <p>and set them up</p>
@@ -170,7 +170,7 @@ below slides.</p>
 
 <p></p>
 <p>Let's also add a simple lil-gui GUI and make its changes render on demand.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './three.js-dev/build/three.module.js';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 +import {GUI} from 'three/addons/libs/lil-gui.module.min.js';
 </pre>

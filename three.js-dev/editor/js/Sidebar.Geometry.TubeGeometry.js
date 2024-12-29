@@ -1,4 +1,4 @@
-import * as THREE from './node_modules/three';
+import * as THREE from './three.js-dev/build/three.module.js';
 
 import { UIDiv, UIRow, UIText, UIInteger, UISelect, UICheckbox, UINumber } from './libs/ui.js';
 import { UIPoints3 } from './libs/ui.three.js';

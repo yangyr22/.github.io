@@ -1,7 +1,7 @@
 import { ColorInput, ToggleInput, SliderInput, LabelElement } from 'flow';
 import { MaterialEditor } from './MaterialEditor.js';
 import { PointsNodeMaterial } from 'three/tsl';
-import * as THREE from './node_modules/three';
+import * as THREE from './three.js-dev/build/three.module.js';
 import { setInputAestheticsFromType } from '../DataTypeLib.js';
 
 export class PointsMaterialEditor extends MaterialEditor {

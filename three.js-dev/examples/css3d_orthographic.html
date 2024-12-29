@@ -23,14 +23,14 @@
 		<script type="importmap">
 			{
 				"imports": {
-					"three/addons/": "D:/AAA_lesson_docu/AGC/project/three.js-dev/examples/jsm"
+					"three/addons/": "./three.js-dev/examples/jsm"
 				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as THREE from './node_modules/three';
+			import * as THREE from './three.js-dev/build/three.module.js';
 
 			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 			import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';

@@ -18,14 +18,14 @@
 					"three": "../build/three.webgpu.js",
 					"three/tsl": "../build/three.webgpu.js",
 
-					"three/addons/": "D:/AAA_lesson_docu/AGC/project/three.js-dev/examples/jsm"				}
+					"three/addons/": "./three.js-dev/examples/jsm"				}
 			}
 		</script>
 
 
 		<script type="module">
 
-			import * as THREE from './node_modules/three';
+			import * as THREE from './three.js-dev/build/three.module.js';
 			import { bumpMap, float, getParallaxCorrectNormal, pmremTexture, reflectVector, texture, uniform, vec3 } from 'three/tsl';
 
 			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';

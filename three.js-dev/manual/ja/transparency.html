@@ -338,7 +338,7 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
     .onChange(requestRenderIfNotRequested);
 </pre>
 <p>もちろん、lil-guiを含める必要があります。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './three.js-dev/build/three.module.js';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 +import {GUI} from 'three/addons/libs/lil-gui.module.min.js';
 </pre>

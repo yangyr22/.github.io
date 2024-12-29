@@ -18,13 +18,13 @@
 					"three": "../build/three.webgpu.js",
 					"three/tsl": "../build/three.webgpu.js",
 
-					"three/addons/": "D:/AAA_lesson_docu/AGC/project/three.js-dev/examples/jsm"				}
+					"three/addons/": "./three.js-dev/examples/jsm"				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as THREE from './node_modules/three';
+			import * as THREE from './three.js-dev/build/three.module.js';
 			import * as TSL from 'three/tsl';
 
 			import { Fn, wgslFn, positionLocal, scriptable, positionWorld, normalLocal, normalWorld, normalView, color, texture, uv, float, vec2, vec3, vec4, oscSine, triplanarTexture, screenUV, js, string, Loop, cameraProjectionMatrix, ScriptableNodeResources } from 'three/tsl';

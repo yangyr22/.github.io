@@ -1,4 +1,4 @@
-import * as THREE from './node_modules/three';
+import * as THREE from './three.js-dev/build/three.module.js';
 import { OrbitControls } from '../../examples/jsm/controls/OrbitControls.js';
 import { threejsLessonUtils } from './threejs-lesson-utils.js';
 

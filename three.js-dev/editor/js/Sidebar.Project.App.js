@@ -1,4 +1,4 @@
-import * as THREE from './node_modules/three';
+import * as THREE from './three.js-dev/build/three.module.js';
 
 import { zipSync, strToU8 } from 'three/addons/libs/fflate.module.js';
 

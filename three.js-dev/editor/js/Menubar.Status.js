@@ -1,4 +1,4 @@
-import * as THREE from './node_modules/three';
+import * as THREE from './three.js-dev/build/three.module.js';
 
 import { UIPanel, UIText } from './libs/ui.js';
 import { UIBoolean } from './libs/ui.three.js';

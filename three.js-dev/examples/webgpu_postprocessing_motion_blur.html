@@ -18,13 +18,13 @@
 					"three": "../build/three.webgpu.js",
 					"three/tsl": "../build/three.webgpu.js",
 
-					"three/addons/": "D:/AAA_lesson_docu/AGC/project/three.js-dev/examples/jsm"				}
+					"three/addons/": "./three.js-dev/examples/jsm"				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as THREE from './node_modules/three';
+			import * as THREE from './three.js-dev/build/three.module.js';
 			import { pass, texture, uniform, output, mrt, mix, velocity, uv, screenUV } from 'three/tsl';
 			import { motionBlur } from 'three/addons/tsl/display/MotionBlur.js';
 

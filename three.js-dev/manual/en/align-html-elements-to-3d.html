@@ -52,7 +52,7 @@ by styled with CSS. It can also be selected by the user as it is actual text. </
 <p>Let's start simple. We'll make a 3D scene with a few primitives and then add a label to each primitive. We'll start
 with an example from <a href="responsive.html">the article on responsive pages</a> </p>
 <p>We'll add some <a href="/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> like we did in <a href="lights.html">the article on lighting</a>.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './three.js-dev/build/three.module.js';
 +import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 </pre>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const controls = new OrbitControls(camera, canvas);
@@ -655,7 +655,7 @@ for (const countryInfo of countryInfos) {
 </pre>
 <p>Finally, since I'm not sure what good values are for these settings lets
 add a GUI so we can play with them</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './node_modules/three';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './three.js-dev/build/three.module.js';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 +import {GUI} from 'three/addons/libs/lil-gui.module.min.js';
 </pre>

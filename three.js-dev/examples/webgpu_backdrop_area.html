@@ -18,13 +18,13 @@
 					"three": "../build/three.webgpu.js",
 					"three/tsl": "../build/three.webgpu.js",
 
-					"three/addons/": "D:/AAA_lesson_docu/AGC/project/three.js-dev/examples/jsm"				}
+					"three/addons/": "./three.js-dev/examples/jsm"				}
 			}
 		</script>
 
 		<script type="module">
 
-			import * as THREE from './node_modules/three';
+			import * as THREE from './three.js-dev/build/three.module.js';
 			import { color, positionWorld, linearDepth, viewportLinearDepth, viewportSharedTexture, screenUV, hue, time, checker, uv, modelScale } from 'three/tsl';
 			import { hashBlur } from 'three/addons/tsl/display/hashBlur.js';
 
