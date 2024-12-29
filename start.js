@@ -6,7 +6,7 @@ import { init_4_deep, animate_4_deep } from './room4_deep.js';
 import { init_5, animate_5 } from './room5.js';
 import { init_6, animate_6 } from './room6.js';
 
-var current_room = 6;
+var current_room = 2;
 var last_room = 0;
 var temp = 0;
 var mid = 0;
