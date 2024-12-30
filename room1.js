@@ -3,6 +3,8 @@ import { OBJLoader} from './three.js-dev/examples/jsm/loaders/OBJLoader.js';
 import { FBXLoader} from './three.js-dev/examples/jsm/loaders/FBXLoader.js';
 import { MTLLoader} from './three.js-dev/examples/jsm/loaders/MTLLoader.js';
 import { GLTFLoader} from './three.js-dev/examples/jsm/loaders/GLTFLoader.js';
+import { FontLoader} from './three.js-dev/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from './three.js-dev/examples/jsm/geometries/TextGeometry.js';
 import { createWall, move } from './utils.js';
 
 let scene, camera, renderer, cameraArrow, Minimap;
@@ -67,6 +69,25 @@ export function init_1(last_room) {
     roughness: 0.5, // 设置粗糙度
   });
 
+  const FontTexture = textureLoader.load('global/font.jpg');
+  
+  const FontMaterial = new THREE.MeshStandardMaterial({
+      color: 0xff0000,
+      map: FontTexture, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+  });
+
+  
+  const paperTexture = textureLoader.load('global/paper.jpg');
+  
+  const paperMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      map: paperTexture, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+  });
+
   const groundGeometry = new THREE.PlaneGeometry(1000, 1000);
   const ground1 = new THREE.Mesh(groundGeometry, groundMaterial);
   ground1.rotation.x = -Math.PI / 2; 
@@ -79,10 +100,30 @@ export function init_1(last_room) {
   carpet.position.y = -198;
   scene.add(carpet);
 
+  const paperGeometry = new THREE.PlaneGeometry(300, 200);
+  const paper = new THREE.Mesh(paperGeometry, paperMaterial);
+  paper.position.z = -499;
+  // scene.add(paper);
+
   scene.add(createWall(new THREE.Vector2(-500, 500), new THREE.Vector2(-500, -500), WallMaterial));
   scene.add(createWall(new THREE.Vector2(-500, -500), new THREE.Vector2(500, -500), WallMaterial));
   scene.add(createWall(new THREE.Vector2(500, -500), new THREE.Vector2(500, 500), WallMaterial));
   scene.add(createWall(new THREE.Vector2(500, 500), new THREE.Vector2(-500, 500), WallMaterial));
+
+  
+  const loader = new FontLoader();
+
+  loader.load( './global/hakidame_Regular.json', function ( font ) {
+    const geometry = new TextGeometry( '你不应该弹钢琴', {
+      font: font,
+      size: 30,
+      depth: 0,
+      curveSegments: 12,
+    } );
+    const textMesh = new THREE.Mesh(geometry, FontMaterial);
+    textMesh.position.set(-150, 50, -498);
+    scene.add(textMesh);
+  } );
 
   load_items();
 

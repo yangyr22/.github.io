@@ -18,8 +18,8 @@ export function init_5(last_room) {
 
   // Create the camera
   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 10, 10000);
-//   camera.position.set(0, 600, 0); // 初始相机位置
-//   camera.rotation.x += -Math.PI / 2;
+  // camera.position.set(0, 600, 0); // 初始相机位置
+  // camera.rotation.x += -Math.PI / 2;
   if (last_room === 6){
     camera.position.set(-800, 0, 400); // 初始相机位置
     camera.rotation.y = - Math.PI / 2;
@@ -94,19 +94,19 @@ export function init_5(last_room) {
 //   carpet.position.y = -199;
 //   scene.add(carpet);
 
-  scene.add(createWall(new THREE.Vector2(-850, 500), new THREE.Vector2(-850, 200), WallMaterial));
-  scene.add(createWall(new THREE.Vector2(-850, 200), new THREE.Vector2(-750, 200), WallMaterial));
-  scene.add(createWall(new THREE.Vector2(-750, 200), new THREE.Vector2(-750, -500), WallMaterial));
-  scene.add(createWall(new THREE.Vector2(-750, -500), new THREE.Vector2(450, -500), WallMaterial));
-  scene.add(createWall(new THREE.Vector2(450, -500), new THREE.Vector2(450, 0), WallMaterial));
-  scene.add(createWall(new THREE.Vector2(450, 0), new THREE.Vector2(850, 0), WallMaterial));
+  scene.add(createWall(new THREE.Vector2(-850, 500), new THREE.Vector2(-850, 100), WallMaterial));
+  scene.add(createWall(new THREE.Vector2(-850, 100), new THREE.Vector2(-750, 100), WallMaterial));
+  scene.add(createWall(new THREE.Vector2(-750, 100), new THREE.Vector2(-750, -500), WallMaterial));
+  scene.add(createWall(new THREE.Vector2(-750, -500), new THREE.Vector2(550, -500), WallMaterial));
+  scene.add(createWall(new THREE.Vector2(550, -500), new THREE.Vector2(550, 0), WallMaterial));
+  scene.add(createWall(new THREE.Vector2(550, 0), new THREE.Vector2(850, 0), WallMaterial));
   scene.add(createWall(new THREE.Vector2(850, 0), new THREE.Vector2(850, 500), WallMaterial));
   scene.add(createWall(new THREE.Vector2(850, 500), new THREE.Vector2(-850, 500), WallMaterial));
 
   load_items();
 
   PositionCopy = 0;
-  Minimap.style.width = '340px';
+  Minimap.style.width = '300px';
   Minimap.style.height = '200px';
   Minimap.style.backgroundImage =  "url('minimap/room5.png')";
 }
@@ -123,7 +123,7 @@ function load_items(){
         }
       });
       gltf.scene.scale.set(250, 170, 200);
-      gltf.scene.position.set(990, -200, 60);
+      gltf.scene.position.set(1010, -200, 60);
       scene.add(gltf.scene); 
     },
   );
@@ -137,7 +137,7 @@ function load_items(){
         }
       });
       gltf.scene.scale.set(600, 600, 600);
-      gltf.scene.position.set(-350, -100, -150);
+      gltf.scene.position.set(-100, -100, -250);
       scene.add(gltf.scene); 
     },
   );
@@ -152,7 +152,7 @@ function load_items(){
       });
       gltf.scene.scale.set(3000, 3000, 3000);
       gltf.scene.rotation.set(0, - Math.PI / 2, 0);
-      gltf.scene.position.set(10, -70, -130);
+      gltf.scene.position.set(160, -70, -100);
       scene.add(gltf.scene); 
     },
   );
@@ -167,7 +167,38 @@ function load_items(){
       });
       gltf.scene.scale.set(3000, 3000, 3000);
       gltf.scene.rotation.set(0, Math.PI / 2, 0);
-      gltf.scene.position.set(90, -70, -130);
+      gltf.scene.position.set(240, -70, -100);
+      scene.add(gltf.scene); 
+    },
+  );
+  
+  loader.load(
+    'room5/cup_and_plate.glb',
+    function ( gltf ) {
+      gltf.scene.traverse(function (node) {
+        if (node.isMesh) {
+          node.castShadow = true;
+          node.receiveShadow = true;
+        }
+      });
+      gltf.scene.scale.set(3000, 3000, 3000);
+      gltf.scene.rotation.set(0, - Math.PI / 2, 0);
+      gltf.scene.position.set(-440, -70, -100);
+      scene.add(gltf.scene); 
+    },
+  );
+  loader.load(
+    'room5/cup_and_plate.glb',
+    function ( gltf ) {
+      gltf.scene.traverse(function (node) {
+        if (node.isMesh) {
+          node.castShadow = true;
+          node.receiveShadow = true;
+        }
+      });
+      gltf.scene.scale.set(3000, 3000, 3000);
+      gltf.scene.rotation.set(0, Math.PI / 2, 0);
+      gltf.scene.position.set(-360, -70, -100);
       scene.add(gltf.scene); 
     },
   );
@@ -198,7 +229,7 @@ function load_items(){
       });
       gltf.scene.rotation.set(0, Math.PI, 0);
       gltf.scene.scale.set(1, 1, 1);
-      gltf.scene.position.set(510, -200, 80);
+      gltf.scene.position.set(550, -200, 80);
       scene.add(gltf.scene); 
     },
   );
@@ -213,7 +244,22 @@ function load_items(){
       });
       gltf.scene.rotation.set(0, Math.PI, 0);
       gltf.scene.scale.set(30, 30, 30);
-      gltf.scene.position.set(50, -200, -150);
+      gltf.scene.position.set(200, -200, -100);
+      scene.add(gltf.scene); 
+    },
+  );
+  loader.load(
+    'room5/table.glb',
+    function ( gltf ) {
+      gltf.scene.traverse(function (node) {
+        if (node.isMesh) {
+          node.castShadow = true;
+          node.receiveShadow = true;
+        }
+      });
+      gltf.scene.rotation.set(0, Math.PI, 0);
+      gltf.scene.scale.set(30, 30, 30);
+      gltf.scene.position.set(-100, -200, -250);
       scene.add(gltf.scene); 
     },
   );
@@ -228,7 +274,7 @@ function load_items(){
       });
       gltf.scene.rotation.set(0, - Math.PI / 2, 0);
       gltf.scene.scale.set(100, 100, 100);
-      gltf.scene.position.set(150, -200, -150);
+      gltf.scene.position.set(300, -200, -100);
       scene.add(gltf.scene); 
     },
   );
@@ -243,7 +289,7 @@ function load_items(){
       });
       gltf.scene.rotation.set(0, Math.PI / 2, 0);
       gltf.scene.scale.set(100, 100, 100);
-      gltf.scene.position.set(-50, -200, -150);
+      gltf.scene.position.set(100, -200, -100);
       scene.add(gltf.scene); 
     },
   );
@@ -259,7 +305,7 @@ function load_items(){
       });
       gltf.scene.rotation.set(0, Math.PI, 0);
       gltf.scene.scale.set(30, 30, 30);
-      gltf.scene.position.set(-350, -200, -150);
+      gltf.scene.position.set(-400, -200, -100);
       scene.add(gltf.scene); 
     },
   );
@@ -274,7 +320,7 @@ function load_items(){
       });
       gltf.scene.rotation.set(0, - Math.PI / 2, 0);
       gltf.scene.scale.set(100, 100, 100);
-      gltf.scene.position.set(-250, -200, -150);
+      gltf.scene.position.set(-300, -200, -100);
       scene.add(gltf.scene); 
     },
   );
@@ -289,7 +335,7 @@ function load_items(){
       });
       gltf.scene.rotation.set(0, Math.PI / 2, 0);
       gltf.scene.scale.set(100, 100, 100);
-      gltf.scene.position.set(-450, -200, -150);
+      gltf.scene.position.set(-500, -200, -100);
       scene.add(gltf.scene); 
     },
   );
@@ -303,7 +349,7 @@ function load_items(){
         }
       });
       gltf.scene.scale.set(128, 100, 80);
-      gltf.scene.position.set(50, -200, 250);
+      gltf.scene.position.set(200, -200, 325);
       gltf.scene.rotation.set(0, Math.PI, 0);
       scene.add(gltf.scene); 
     },
@@ -318,7 +364,7 @@ function load_items(){
         }
       });
       gltf.scene.scale.set(128, 100, 80);
-      gltf.scene.position.set(50, -200, 50);
+      gltf.scene.position.set(200, -200, 125);
       scene.add(gltf.scene); 
     },
   );
@@ -332,7 +378,7 @@ function load_items(){
         }
       });
       gltf.scene.scale.set(16, 12, 12);
-      gltf.scene.position.set(50, -200, 150);
+      gltf.scene.position.set(200, -200, 225);
       gltf.scene.rotation.set(0, Math.PI, 0);
       scene.add(gltf.scene); 
     },
@@ -347,7 +393,7 @@ function load_items(){
         }
       });
       gltf.scene.scale.set(128, 100, 80);
-      gltf.scene.position.set(-350, -200, 250);
+      gltf.scene.position.set(-400, -200, 325);
       gltf.scene.rotation.set(0, Math.PI, 0);
       scene.add(gltf.scene); 
     },
@@ -362,7 +408,7 @@ function load_items(){
         }
       });
       gltf.scene.scale.set(128, 100, 80);
-      gltf.scene.position.set(-350, -200, 50);
+      gltf.scene.position.set(-400, -200, 125);
       scene.add(gltf.scene); 
     },
   );
@@ -376,7 +422,7 @@ function load_items(){
         }
       });
       gltf.scene.scale.set(16, 12, 12);
-      gltf.scene.position.set(-350, -200, 150);
+      gltf.scene.position.set(-400, -200, 225);
       gltf.scene.rotation.set(0, Math.PI, 0);
       scene.add(gltf.scene); 
     },
@@ -508,16 +554,25 @@ function cannot_go(x, z){
     if (Math.abs(z) > 450 || Math.abs(x) > 800){
         return true;
     }
-    if (z < 250 && x > 400){
+    if (z < 250 && x > 500){
       return true;
     }
-    if (z < 250 && x < -700){
+    if (z < 150 && x < -700){
       return true;
     }
-    if (Math.abs(z-50) < 320 && Math.abs(x+350) < 180){
+    if (Math.abs(z-225) < 180 && Math.abs(x+400) < 180){
       return true;
     }
-    if (Math.abs(z-50) < 320 && Math.abs(x-50) < 180){
+    if (Math.abs(z-225) < 180 && Math.abs(x-200) < 180){
+      return true;
+    }
+    if (Math.abs(z+100) < 80 && Math.abs(x+400) < 180){
+      return true;
+    }
+    if (Math.abs(z+100) < 80 && Math.abs(x-200) < 180){
+      return true;
+    }
+    if (Math.abs(z+250) < 80 && Math.abs(x+200) < 80){
       return true;
     }
     return false;
@@ -529,7 +584,7 @@ function updateCameraArrow() {
   const direction = -camera.rotation.y;
 
   // 将方向转换为小地图上的相对位置
-  const arrowX = position.x / 5 + 180; // 假设小地图宽度为400px，中心为200px
+  const arrowX = position.x / 6 + 160; // 假设小地图宽度为400px，中心为200px
   const arrowY = position.z / 5 + 110; // 假设小地图高度为400px，中心为200px
 
   // 更新箭头的位置
