@@ -94,6 +94,17 @@
             background-image: linear-gradient(to right, rgba(231, 143, 41, 0.3), rgba(231, 143, 41, 1),rgba(231, 143, 41, 1), rgba(231, 143, 41, 0.3));
             color: rgba(176, 176, 176, 1);
         }
+        #optionsDiv {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            height: 80px;
+            width: 260px;
+            background-color: black;
+            border: 2px solid gray;
+            padding: 10px;
+            z-index: 10;
+        }
     </style>
     <script type="importmap">
         {
@@ -121,6 +132,8 @@
         <div id="cameraArrow"></div>
         <div id="ghostArrow"></div>
         <div id="chairArrow"></div>
+    </div>
+    <div id="optionsDiv"> 
     </div>
     <div id="room" data-param="value"></div>
     

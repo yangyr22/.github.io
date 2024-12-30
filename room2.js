@@ -137,20 +137,37 @@ export function init_2(last_room, room_lit) {
   PositionCopy = 0;
   Minimap.style.width = '150px';
   Minimap.style.height = '300px';
-  if (room_lit[3] === false){
-    Minimap.style.backgroundImage =  "url('minimap/room2_0.png')";
-  }
-  else if (room_lit[2] === false){
-    Minimap.style.backgroundImage =  "url('minimap/room2_1.png')";
-  }
-  else if (room_lit[0] === false){
-    Minimap.style.backgroundImage =  "url('minimap/room2_2.png')";
+  if (room_lit[0] === false){
+    if (room_lit[2] === false){
+      if (room_lit[3] === false){
+        Minimap.style.backgroundImage =  "url('minimap/room2_0000.png')";
+      }
+      else{
+        Minimap.style.backgroundImage =  "url('minimap/room2_0001.png')";
+      }
+    }
+    else{
+      Minimap.style.backgroundImage =  "url('minimap/room2_0011.png')";
+    }
   }
   else if (room_lit[1] === false){
-    Minimap.style.backgroundImage =  "url('minimap/room2_3.png')";
+    if (room_lit[2] === false){
+      if (room_lit[3] === false){
+        Minimap.style.backgroundImage =  "url('minimap/room2_1000.png')";
+      }
+      else{
+        Minimap.style.backgroundImage =  "url('minimap/room2_1001.png')";
+      }
+    }
+    else{
+      Minimap.style.backgroundImage =  "url('minimap/room2_1011.png')";
+    }
+  }
+  else if (room_lit[2] === false){
+    Minimap.style.backgroundImage =  "url('minimap/room2_1101.png')";
   }
   else{
-    Minimap.style.backgroundImage =  "url('minimap/room2_4.png')";
+    Minimap.style.backgroundImage =  "url('minimap/room2_1111.png')";
   }
 }
 
