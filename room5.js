@@ -504,6 +504,9 @@ export function animate_5(current_room, last_room, keyPressed, face_item, messag
         if (face_door_2()){
           current_room = 6;
         }
+        if (face_music() && items['queen']){
+          face_item['musicbox'] = true;
+        }
       }
     }
     if (cannot_go(camera.position.x, camera.position.z)){
@@ -550,6 +553,17 @@ function face_door_2(){
     return true;
 }
 
+
+function face_music(){
+  if (Math.abs(camera.position.z + 350) >= 50 || Math.abs(camera.position.x + 100) >= 100){
+      return false;
+  }
+  if (camera.rotation.y <= 3 * Math.PI / 4 && camera.rotation.y >= - 3 * Math.PI / 4){
+      return false;
+  }
+  return true;
+}
+
 function cannot_go(x, z){
     if (Math.abs(z) > 450 || Math.abs(x) > 800){
         return true;
@@ -572,7 +586,7 @@ function cannot_go(x, z){
     if (Math.abs(z+100) < 80 && Math.abs(x-200) < 180){
       return true;
     }
-    if (Math.abs(z+250) < 80 && Math.abs(x+200) < 80){
+    if (Math.abs(z+250) < 80 && Math.abs(x+100) < 80){
       return true;
     }
     return false;

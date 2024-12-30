@@ -6,8 +6,8 @@ import { init_4_deep, animate_4_deep } from './room4_deep.js';
 import { init_5, animate_5 } from './room5.js';
 import { init_6, animate_6 } from './room6.js';
 
-var current_room = 5;
-var last_room = 2;
+var current_room = 6;
+var last_room = 5;
 var temp = 0;
 var mid = 0;
 let keyPressed = {};
@@ -225,7 +225,7 @@ let done = {
 }
 
 let items = {
-    'queen': false,
+    'queen': true,
     'king': false,
     'music': false,
 }
