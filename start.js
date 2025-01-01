@@ -6,13 +6,14 @@ import { init_4_deep, animate_4_deep } from './room4_deep.js';
 import { init_5, animate_5 } from './room5.js';
 import { init_6, animate_6 } from './room6.js';
 
-var current_room = 6;
-var last_room = 5;
+var current_room = 3;
+var last_room = 2;
 var temp = 0;
 var mid = 0;
 let keyPressed = {};
 let message = "";
 let is_4_deep = true;
+let render_deep = true;
 let is_4_locked = true;
 let selectElement, selecting, readElement, yesButton1, noButton1, endOfRead;
 let clockElement, clockResultElement, yesButton2, noButton2;
@@ -22,7 +23,6 @@ let pumpkinElement, pumpkinResultElement, yesButton4, noButton4;
 let manElement, womanElement, mirrorElement, plantElement;
 let pianoElement, pianoResultElement, pianoResult2Element, yesButton5, noButton5, yesButton52, noButton52;
 let musicboxElement, musicboxResultElement, yesButton6, noButton6;
-let dairyElement1, dairyElement2, dairyElement3;
 
 
 
@@ -195,7 +195,6 @@ let face_item = {
     'mirror' : false,
     'piano': false,
     'musicbox': false,
-    'diary': false,
 };
 let item_content = {
     'book_shelf' : selectElement,
@@ -208,7 +207,6 @@ let item_content = {
     'mirror' : mirrorElement,
     'piano': pianoElement,
     'musicbox': musicboxElement,
-    'diary': dairyElement1,
 };
 let done = {
     'book_shelf' : false,
@@ -221,7 +219,6 @@ let done = {
     'mirror' : false,
     'piano': false,
     'musicbox': false,
-    'diary': false,
 }
 
 let items = {
@@ -245,7 +242,6 @@ let all_select = {
     pianoElement, pianoResult2Element, pianoResultElement,
     clock2Element, clock2ResultElement,
     musicboxElement, musicboxResultElement,
-    dairyElement1, dairyElement2, dairyElement3,
 };
 
 // Add keyboard listeners
@@ -270,6 +266,7 @@ function init(){
             temp = current_room;
         } else if (current_room === 4 && is_4_deep ===false) {
             init_4(last_room);
+            render_deep = false;
         } else if (current_room === 4 && is_4_deep === true) {
             init_4_deep(last_room);
         } else if (current_room === 5) {
@@ -294,11 +291,11 @@ function animate(){
         const [info1, info2] = animate_3(current_room, last_room, keyPressed, face_item, message, items);
         mid = info1;
         face_item = info2;
-    } else if (current_room === 4 && is_4_deep ===false) {
+    } else if (current_room === 4 && render_deep ===false) {
         const [info1, info2] = animate_4(current_room, last_room, keyPressed, face_item, message, items);
         mid = info1;
         face_item = info2;
-    } else if (current_room === 4 && is_4_deep ===true) {
+    } else if (current_room === 4 && render_deep ===true) {
         const [info1, info2] = animate_4_deep(current_room, last_room, keyPressed, face_item, message, items);
         mid = info1;
         face_item = info2;

@@ -3,8 +3,6 @@ import { GLTFLoader} from './three.js-dev/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader} from './three.js-dev/examples/jsm/loaders/DRACOLoader.js';
 import { OBJLoader} from './three.js-dev/examples/jsm/loaders/OBJLoader.js';
 import { MTLLoader} from './three.js-dev/examples/jsm/loaders/MTLLoader.js';
-import { FontLoader} from './three.js-dev/examples/jsm/loaders/FontLoader.js';
-import { TextGeometry } from './three.js-dev/examples/jsm/geometries/TextGeometry.js';
 import { createWall, move } from './utils.js';
 
 let scene, camera, renderer, cameraArrow, Minimap;
@@ -96,15 +94,6 @@ export function init_2(last_room, room_lit) {
     roughness: 0.5, // 设置粗糙度
   });
 
-  const FontTexture = textureLoader.load('global/font.jpg');
-
-  const FontMaterial = new THREE.MeshStandardMaterial({
-    color: 0xff0000,
-    map: FontTexture, // 应用纹理
-    metalness: 0.2, // 设置金属度
-    roughness: 0.5, // 设置粗糙度
-  });
-
   const groundGeometry = new THREE.PlaneGeometry(1050, 1500);
   const ground1 = new THREE.Mesh(groundGeometry, groundMaterial);
   ground1.rotation.x = -Math.PI / 2; 
@@ -142,21 +131,6 @@ export function init_2(last_room, room_lit) {
   scene.add(createWall(new THREE.Vector2(225, 100), new THREE.Vector2(375, 250), WallMaterial));
   scene.add(createWall(new THREE.Vector2(-225, 750), new THREE.Vector2(-375, 600), WallMaterial));
   scene.add(createWall(new THREE.Vector2(375, 600), new THREE.Vector2(225, 750), WallMaterial));
-
-  const loader = new FontLoader();
-
-  loader.load( './three.js-dev/examples/fonts/optimer_bold.typeface.json', function ( font ) {
-
-    const geometry = new TextGeometry( 'Hello three.js!', {
-      font: font,
-      size: 80,
-      depth: 0,
-      curveSegments: 12,
-    } );
-    const textMesh = new THREE.Mesh(geometry, FontMaterial);
-    textMesh.position.set(-150, 0, 0);
-    scene.add(textMesh);
-  } );
 
 
   load_items(room_lit);

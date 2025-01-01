@@ -79,13 +79,14 @@ export function init_1(last_room) {
   });
 
   
-  const paperTexture = textureLoader.load('global/paper.jpg');
+  const paperTexture = textureLoader.load('global/paper.png');
   
   const paperMaterial = new THREE.MeshStandardMaterial({
       color: 0xffffff,
       map: paperTexture, // 应用纹理
       metalness: 0.2, // 设置金属度
       roughness: 0.5, // 设置粗糙度
+      transparent: true 
   });
 
   const groundGeometry = new THREE.PlaneGeometry(1000, 1000);
@@ -102,8 +103,8 @@ export function init_1(last_room) {
 
   const paperGeometry = new THREE.PlaneGeometry(300, 200);
   const paper = new THREE.Mesh(paperGeometry, paperMaterial);
-  paper.position.z = -499;
-  // scene.add(paper);
+  paper.position.set(0, 100, -499);
+  scene.add(paper);
 
   scene.add(createWall(new THREE.Vector2(-500, 500), new THREE.Vector2(-500, -500), WallMaterial));
   scene.add(createWall(new THREE.Vector2(-500, -500), new THREE.Vector2(500, -500), WallMaterial));
@@ -113,15 +114,15 @@ export function init_1(last_room) {
   
   const loader = new FontLoader();
 
-  loader.load( './global/hakidame_Regular.json', function ( font ) {
-    const geometry = new TextGeometry( '你不应该弹钢琴', {
+  loader.load( './global/lvyao_Regular.json', function ( font ) {
+    const geometry = new TextGeometry( '你不应该\n弹钢琴', {
       font: font,
       size: 30,
       depth: 0,
       curveSegments: 12,
     } );
     const textMesh = new THREE.Mesh(geometry, FontMaterial);
-    textMesh.position.set(-150, 50, -498);
+    textMesh.position.set(-100, 120, -498);
     scene.add(textMesh);
   } );
 

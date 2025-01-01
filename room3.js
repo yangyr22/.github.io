@@ -29,7 +29,7 @@ export function init_3(last_room) {
     camera.rotation.y = - Math.PI / 2;
   }
   if (last_room === 4){
-    camera.position.set(0, 0, -400); // 初始相机位置
+    camera.position.set(150, 0, -400); // 初始相机位置
     camera.rotation.y = Math.PI;
   }
 
