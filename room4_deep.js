@@ -1,8 +1,9 @@
 import * as THREE from './three.js-dev/build/three.module.js';
 import { OBJLoader} from './three.js-dev/examples/jsm/loaders/OBJLoader.js';
-import { FBXLoader} from './three.js-dev/examples/jsm/loaders/FBXLoader.js';
 import { MTLLoader} from './three.js-dev/examples/jsm/loaders/MTLLoader.js';
 import { GLTFLoader} from './three.js-dev/examples/jsm/loaders/GLTFLoader.js';
+import { FontLoader} from './three.js-dev/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from './three.js-dev/examples/jsm/geometries/TextGeometry.js';
 import { createWall, move } from './utils.js';
 
 let scene, camera, renderer, cameraArrow, Minimap;
@@ -84,6 +85,39 @@ export function init_4_deep(last_room) {
   scene.add(createWall(new THREE.Vector2(-500, -500), new THREE.Vector2(500, -500), WallMaterial));
   scene.add(createWall(new THREE.Vector2(500, -500), new THREE.Vector2(500, 500), WallMaterial));
   scene.add(createWall(new THREE.Vector2(500, 500), new THREE.Vector2(-500, 500), WallMaterial));
+
+  const paperTexture = textureLoader.load('global/paper.png');
+  const paperMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      map: paperTexture, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+      transparent: true 
+  });
+  const FontTexture = textureLoader.load('global/font.jpg');
+  const FontMaterial = new THREE.MeshStandardMaterial({
+      color: 0xff0000,
+      map: FontTexture, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+  });
+  const paperGeometry = new THREE.PlaneGeometry(320, 220);
+  const paper = new THREE.Mesh(paperGeometry, paperMaterial);
+  paper.position.set(0, 100, -499);
+  scene.add(paper);
+
+  const loader = new FontLoader();
+  loader.load( './global/lvyao_Regular.json', function ( font ) {
+    const geometry = new TextGeometry( '是 太阳，是 沙\n    是 飞鸟。\n   我是什么？', {
+      font: font,
+      size: 28,
+      depth: 0,
+      curveSegments: 12,
+    } );
+    const textMesh = new THREE.Mesh(geometry, FontMaterial);
+    textMesh.position.set(-140, 140, -498);
+    scene.add(textMesh);
+  } );
 
   load_items();
 

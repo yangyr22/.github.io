@@ -1,8 +1,9 @@
 import * as THREE from './three.js-dev/build/three.module.js';
 import { GLTFLoader} from './three.js-dev/examples/jsm/loaders/GLTFLoader.js';
-import { DRACOLoader} from './three.js-dev/examples/jsm/loaders/DRACOLoader.js';
 import { OBJLoader} from './three.js-dev/examples/jsm/loaders/OBJLoader.js';
 import { MTLLoader} from './three.js-dev/examples/jsm/loaders/MTLLoader.js';
+import { FontLoader} from './three.js-dev/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from './three.js-dev/examples/jsm/geometries/TextGeometry.js';
 import { createWall, move } from './utils.js';
 
 let scene, camera, renderer, cameraArrow, Minimap, ghostArrow;
@@ -104,6 +105,39 @@ export function init_3(last_room) {
   carpet.rotation.x = -Math.PI / 2; 
   carpet.position.set(150 ,-199, -280);
   scene.add(carpet);
+
+  const paperTexture = textureLoader.load('global/paper.png');
+  const paperMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      map: paperTexture, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+      transparent: true 
+  });
+  const FontTexture = textureLoader.load('global/font.jpg');
+  const FontMaterial = new THREE.MeshStandardMaterial({
+      color: 0xff0000,
+      map: FontTexture, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+  });
+  const paperGeometry = new THREE.PlaneGeometry(300, 200);
+  const paper = new THREE.Mesh(paperGeometry, paperMaterial);
+  paper.position.set(-450, 100, -149);
+  scene.add(paper);
+
+  const loader = new FontLoader();
+  loader.load( './global/lvyao_Regular.json', function ( font ) {
+    const geometry = new TextGeometry( ' 乐谱被 蓝色\n的眼睛注视着', {
+      font: font,
+      size: 28,
+      depth: 0,
+      curveSegments: 12,
+    } );
+    const textMesh = new THREE.Mesh(geometry, FontMaterial);
+    textMesh.position.set(-580, 120, -148);
+    scene.add(textMesh);
+  } );
 
   scene.add(createWall(new THREE.Vector2(-600, 450), new THREE.Vector2(-600, -150), WallMaterial));
   scene.add(createWall(new THREE.Vector2(-600, -150), new THREE.Vector2(-300, -150), WallMaterial));
