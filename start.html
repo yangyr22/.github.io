@@ -105,6 +105,16 @@
             padding: 10px;
             z-index: 10;
         }
+        #GameOverDiv{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-image: url('global/image.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 15;
+            display: none;
+        }
     </style>
     <script type="importmap">
         {
@@ -128,6 +138,7 @@
             }, 1000);
         };
     </script>
+    <div id="GameOverDiv"></div>
     <div id="minimapDiv"> 
         <div id="cameraArrow"></div>
         <div id="ghostArrow"></div>
@@ -185,6 +196,18 @@
         </div>
     </div>    
     
+    <div class="selectDiv" id="save">
+        <div>
+            要在这里存档吗？
+        </div>
+        <button id="yesButton_save">要</button>
+        <button id="noButton_save">再想想</button>
+    </div>
+    <div class="selectDiv" id="saveResult">
+        <div>
+            存档成功
+        </div>
+    </div>    
     <div class="selectDiv" id="musicbox">
         <div>
             要插上发条吗？

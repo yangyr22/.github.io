@@ -286,7 +286,7 @@ function load_items(){
 }
 
 
-let audio
+let audio;
 
 export function stopMusic() {
   const audioElement = document.getElementById('queen');
@@ -296,6 +296,7 @@ export function stopMusic() {
 }
 
 export function animate_3(current_room, last_room, keyPressed, face_item, message) {
+  let die = false;
   if(chasing === 0 && message === "chasing"){
     stopMusic()
     audio = new Audio('audio/loop_65.ogg');
@@ -310,12 +311,15 @@ export function animate_3(current_room, last_room, keyPressed, face_item, messag
     const dist = to_ghost.length();
     ghost.position.x += (camera.position.x - ghost.position.x) / dist;
     ghost.position.z += (camera.position.z - ghost.position.z) / dist;
-    ghost.rotation.y = to_ghost.angle() + Math.PI / 2;
+    ghost.rotation.y = - to_ghost.angle() - Math.PI / 2;
     if (to_ghost.length() <= 100){
-      window.location.href = 'gameover.html';
+      die = true;
+      message = "";
+      chasing = 0;
+      scene.remove(ghost);
     }
     const position = ghost.position;
-    const direction = ghost.rotation.y;
+    const direction = to_ghost.angle() - Math.PI / 2;
     
     const arrowX = position.x / 5 + 130;
     const arrowY = position.z / 4.5 + 110;
@@ -390,7 +394,7 @@ export function animate_3(current_room, last_room, keyPressed, face_item, messag
     mixers[key].update(time);
   }
   renderer.render(scene, camera);
-  return [current_room, face_item];
+  return [current_room, face_item, die];
 }
 
 function face_door_1(){

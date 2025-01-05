@@ -398,6 +398,9 @@ export function animate_2(current_room, last_room, keyPressed, face_item, messag
         if (face_door_3()){
           current_room = 5;
         }
+        if (face_cat()){
+          face_item['cat'] = true;
+        }
       }
     }
     if (cannot_go(camera.position.x, camera.position.z)){
@@ -447,7 +450,7 @@ function face_door_1(){
 }
 
 function face_door_2(){
-  if (camera.position.x <= 450 && camera.position.z <= 350){
+  if (camera.position.x <= 450 || camera.position.z <= 350){
       return false;
   }
   if (camera.rotation.y <= - 3 * Math.PI / 4 || camera.rotation.y >= - Math.PI / 4){
@@ -457,11 +460,21 @@ function face_door_2(){
 }
 
 function face_door_3(){
-  if (camera.position.x >= -450 && camera.position.z <= 350){
+  if (camera.position.x >= -450 || camera.position.z <= 350){
       return false;
   }
   if (camera.rotation.y >= 3 * Math.PI / 4 || camera.rotation.y <= Math.PI / 4){
       return false;
+  }
+  return true;
+}
+
+function face_cat(){
+  if (dist.length() >= 300){
+    return false;
+  }
+  if (Math.abs(camera.rotation.y - cat.rotation.y) > Math.PI / 4 && Math.abs(camera.rotation.y - cat.rotation.y) < Math.PI / 4 * 7){
+    return false;
   }
   return true;
 }

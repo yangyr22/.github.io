@@ -6,7 +6,7 @@ import { init_4_deep, animate_4_deep } from './room4_deep.js';
 import { init_5, animate_5 } from './room5.js';
 import { init_6, animate_6 } from './room6.js';
 
-var current_room = 3;
+var current_room = 5;
 var last_room = 2;
 var temp = 0;
 var mid = 0;
@@ -15,6 +15,7 @@ let message = "";
 let is_4_deep = true;
 let render_deep = true;
 let is_4_locked = true;
+let die, gameover;
 let selectElement, selecting, readElement, yesButton1, noButton1, endOfRead;
 let clockElement, clockResultElement, yesButton2, noButton2;
 let clock2Element, clock2ResultElement, yesButton22, noButton22;
@@ -23,11 +24,25 @@ let pumpkinElement, pumpkinResultElement, yesButton4, noButton4;
 let manElement, womanElement, mirrorElement, plantElement;
 let pianoElement, pianoResultElement, pianoResult2Element, yesButton5, noButton5, yesButton52, noButton52;
 let musicboxElement, musicboxResultElement, yesButton6, noButton6;
+let saveElement, saveResultElement, yesButton7, noButton7;
 
-
+function deepCopy(obj) {
+    if (obj === null || typeof obj !== 'object') {
+      return obj;
+    }
+    let copy = obj.constructor();
+    for (let attr in obj) {
+      if (obj.hasOwnProperty(attr)) {
+        copy[attr] = deepCopy(obj[attr]);
+      }
+    }
+    return copy;
+}
 
 selecting = false;
 endOfRead = false;
+die = false;
+gameover = document.getElementById('GameOverDiv');
 selectElement = document.getElementById('select1');
 readElement = document.getElementById('Read');
 yesButton1 = document.getElementById('yesButton_read');
@@ -70,6 +85,11 @@ musicboxResultElement = document.getElementById('musicboxResult');
 yesButton6 = document.getElementById('yesButton_musicbox');
 noButton6 = document.getElementById('noButton_musicbox');
 
+saveElement = document.getElementById('save');
+saveResultElement = document.getElementById('saveResult');
+yesButton7 = document.getElementById('yesButton_save');
+noButton7 = document.getElementById('noButton_save');
+
 manElement = document.getElementById('man');
 womanElement = document.getElementById('woman');
 mirrorElement = document.getElementById('mirror');
@@ -91,7 +111,6 @@ yesButton2.addEventListener('click', function() {
     endOfRead = true;
     items['queen'] = true;
     is_4_deep = false;
-    init_4(last_room);
 });
 noButton2.addEventListener('click', function() {
     clockElement.style.display = 'none';
@@ -119,9 +138,21 @@ yesButton3.addEventListener('click', function() {
     message = "chasing";
 });
 noButton3.addEventListener('click', function() {
-    clockElement.style.display = 'none';
+    paperElement.style.display = 'none';
     selecting = false;
-    message = "chasing";
+});
+
+yesButton4.addEventListener('click', function() {
+    pumpkinResultElement.style.display = 'flex';
+    pumpkinElement.style.display = 'none';
+    endOfRead = true;
+    is_4_locked = false;
+    done['pumpkin'] = true;
+    room_lit[3] = true;
+});
+noButton4.addEventListener('click', function() {
+    pumpkinElement.style.display = 'none';
+    selecting = false;
 });
 
 
@@ -138,19 +169,20 @@ noButton6.addEventListener('click', function() {
 });
 
 
-yesButton4.addEventListener('click', function() {
-    pumpkinResultElement.style.display = 'flex';
-    pumpkinElement.style.display = 'none';
+yesButton7.addEventListener('click', function() {
+    saveResultElement.style.display = 'flex';
+    saveElement.style.display = 'none';
+    save_done = done;
+    save_is_4_deep = is_4_deep;
+    save_is_4_locked = is_4_locked;
+    save_items = items;
+    save_room_lit = room_lit;
     endOfRead = true;
-    is_4_locked = false;
-    done['pumpkin'] = true;
-    room_lit[3] = true;
 });
-noButton4.addEventListener('click', function() {
-    pumpkinElement.style.display = 'none';
+noButton7.addEventListener('click', function() {
+    saveElement.style.display = 'none';
     selecting = false;
 });
-
 
 yesButton5.addEventListener('click', function() {
     pianoResultElement.style.display = 'flex';
@@ -161,7 +193,9 @@ noButton4.addEventListener('click', function() {
     selecting = false;
 });
 yesButton52.addEventListener('click', function() {
-    window.location.href = 'gameover.html';
+    die = true;
+    pianoResultElement.style.display = 'none';
+    selecting = false;
 });
 noButton52.addEventListener('click', function() {
     pianoResult2Element.style.display = 'flex';
@@ -195,6 +229,7 @@ let face_item = {
     'mirror' : false,
     'piano': false,
     'musicbox': false,
+    'cat': false,
 };
 let item_content = {
     'book_shelf' : selectElement,
@@ -207,6 +242,7 @@ let item_content = {
     'mirror' : mirrorElement,
     'piano': pianoElement,
     'musicbox': musicboxElement,
+    'cat': saveElement,
 };
 let done = {
     'book_shelf' : false,
@@ -219,6 +255,7 @@ let done = {
     'mirror' : false,
     'piano': false,
     'musicbox': false,
+    'cat': false,
 }
 
 let items = {
@@ -242,7 +279,14 @@ let all_select = {
     pianoElement, pianoResult2Element, pianoResultElement,
     clock2Element, clock2ResultElement,
     musicboxElement, musicboxResultElement,
+    saveElement, saveResultElement,
 };
+
+let save_is_4_deep = is_4_deep;
+let save_is_4_locked = is_4_locked;
+let save_done = deepCopy(done);
+let save_items = deepCopy(items);
+let save_room_lit = deepCopy(room_lit);
 
 // Add keyboard listeners
 document.addEventListener('keydown', function(event) {
@@ -255,6 +299,7 @@ document.addEventListener('keyup', function(event) {
 function init(){
     if (current_room != temp){
         document.getElementById('chairArrow').style.display = 'none';
+        document.getElementById('ghostArrow').style.display = 'none';
         if (current_room === 1) {
             init_1(last_room);
         } else if (current_room === 2) {
@@ -288,9 +333,11 @@ function animate(){
         mid = info1;
         face_item = info2;
     } else if (current_room === 3) {
-        const [info1, info2] = animate_3(current_room, last_room, keyPressed, face_item, message, items);
+        const [info1, info2, info3, info4] = animate_3(current_room, last_room, keyPressed, face_item, message, items);
         mid = info1;
         face_item = info2;
+        die = info3;
+        message = info4;
     } else if (current_room === 4 && render_deep ===false) {
         const [info1, info2] = animate_4(current_room, last_room, keyPressed, face_item, message, items);
         mid = info1;
@@ -317,7 +364,23 @@ function animate(){
 //init and animate
 function animationLoop() {
     requestAnimationFrame(animationLoop);
-    if (selecting === false){
+    if (die === true){
+        gameover.style.display = 'block';
+        if (keyPressed['Space'] === true){
+            die = false;
+            gameover.style.display = 'none';
+            done = deepCopy(save_done);
+            is_4_deep = save_is_4_deep;
+            is_4_locked = save_is_4_locked;
+            items = deepCopy(save_items);
+            room_lit = deepCopy(save_room_lit);
+            current_room = 2;
+            last_room = 0;
+            temp = 0;
+            mid = 0;
+        }
+    }
+    else if (selecting === false){
         init();
         animate();
 

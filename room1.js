@@ -115,14 +115,14 @@ export function init_1(last_room) {
   const loader = new FontLoader();
 
   loader.load( './global/lvyao_Regular.json', function ( font ) {
-    const geometry = new TextGeometry( '你不应该\n弹钢琴', {
+    const geometry = new TextGeometry( '你没有弹琴\n的必要吧？', {
       font: font,
       size: 30,
       depth: 0,
       curveSegments: 12,
     } );
     const textMesh = new THREE.Mesh(geometry, FontMaterial);
-    textMesh.position.set(-100, 120, -498);
+    textMesh.position.set(-110, 120, -498);
     scene.add(textMesh);
   } );
 
