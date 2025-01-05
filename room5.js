@@ -29,7 +29,7 @@ export function init_5(last_room) {
   }
   if (last_room === 2){
     camera.position.set(800, 0, 400); // 初始相机位置
-    camera.rotation.y = Math.PI / 2;
+    // camera.rotation.y = Math.PI / 2;
   }
 
   // Create the renderer and add it to the DOM
@@ -141,7 +141,8 @@ export function init_5(last_room) {
   });
   const ImageGeometry = new THREE.PlaneGeometry(70, 70);
   image = new THREE.Mesh(ImageGeometry, ImageMaterial);
-  image.position.set(720, 0, 60);
+  image.position.set(720, -10, 60);
+  scene.add(image);
 
   load_items();
 
@@ -587,11 +588,15 @@ export function animate_5(current_room, last_room, keyPressed, face_item, messag
   else if (shakeTimer == 0){
     const x_copy = camera.position.x;
     const z_copy = camera.position.z;
-    const y_copy = camera.rotation.y;
-    camera = move(camera, keyPressed);   
-    if (camera.position.x != x_copy || camera.position.z != z_copy || camera.rotation.y != y_copy){
-      scene.remove(image);
-    } 
+    camera = move(camera, keyPressed);  
+    if (camera.position.x >= 640){
+      image.position.set(camera.position.x, -10, 59);
+      const scale = 1 - (camera.position.z - 250) / 400;
+      image.scale.set(scale, scale, scale);
+    }
+    else{
+      image.position.set(720, 0, -60);
+    }
     if (keyPressed['Space']){
       if (SpaceUp === true) {
         if (face_door_1()){
@@ -602,9 +607,6 @@ export function animate_5(current_room, last_room, keyPressed, face_item, messag
         }
         if (face_music() && items['queen']){
           face_item['musicbox'] = true;
-        }
-        if (face_mirror()){
-          scene.add(image);
         }
       }
     }
@@ -658,17 +660,6 @@ function face_music(){
       return false;
   }
   if (camera.rotation.y <= 3 * Math.PI / 4 && camera.rotation.y >= - 3 * Math.PI / 4){
-      return false;
-  }
-  return true;
-}
-
-
-function face_mirror(){
-  if (Math.abs(camera.position.z - 250) >= 50 || Math.abs(camera.position.x - 720) >= 100){
-      return false;
-  }
-  if (camera.rotation.y >= Math.PI / 4 || camera.rotation.y <= -Math.PI / 4){
       return false;
   }
   return true;

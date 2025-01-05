@@ -6,15 +6,15 @@ import { init_4_deep, animate_4_deep } from './room4_deep.js';
 import { init_5, animate_5 } from './room5.js';
 import { init_6, animate_6 } from './room6.js';
 
-var current_room = 4;
-var last_room = 3;
+var current_room = 5;
+var last_room = 2;
 var temp = 0;
 var mid = 0;
 let keyPressed = {};
 let message = "";
 let is_4_deep = true;
 let render_deep = true;
-let is_4_locked = false;
+let is_4_locked = true;
 let die, gameover;
 let selectElement, selecting, readElement, yesButton1, noButton1, endOfRead;
 let clockElement, clockResultElement, yesButton2, noButton2;
