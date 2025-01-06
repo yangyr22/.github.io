@@ -296,6 +296,86 @@ document.addEventListener('keyup', function(event) {
     keyPressed[event.code] = false; 
 });
 
+// Add gamepad control
+
+window.addEventListener("gamepadconnected", function(e) {
+    console.log("Gamepad connected:", e.gamepad);
+});
+window.addEventListener("gamepaddisconnected", function(e) {
+    console.log("Gamepad disconnected:", e.gamepad);
+});
+
+function updateGamepadInput() {
+    const gamepads = navigator.getGamepads();
+    if (!gamepads) return;
+
+    const gamepad = gamepads[0];
+    if (gamepad) {
+        // 左侧转轮 -> wasd（移动）
+        if (gamepad.axes[0] < -0.5) {
+            keyPressed["KeyA"] = true;
+        } else {
+            keyPressed["KeyA"] = false;
+        }
+
+        if (gamepad.axes[0] > 0.5) {
+            keyPressed["KeyD"] = true;
+        } else {
+            keyPressed["KeyD"] = false;
+        }
+
+        if (gamepad.axes[1] < -0.5) {
+            keyPressed["KeyW"] = true;
+        } else {
+            keyPressed["KeyW"] = false;
+        }
+
+        if (gamepad.axes[1] > 0.5) {
+            keyPressed["KeyS"] = true;
+        } else {
+            keyPressed["KeyS"] = false;
+        }
+
+        // 右侧转轮 -> ArrowLeft / ArrowRight（视角转动）
+        if (gamepad.axes[2] < -0.5) {
+            keyPressed["ArrowLeft"] = true;
+        } else {
+            keyPressed["ArrowLeft"] = false;
+        }
+
+        if (gamepad.axes[2] > 0.5) {
+            keyPressed["ArrowRight"] = true;
+        } else {
+            keyPressed["ArrowRight"] = false;
+        }
+
+        // A 键 -> 空格 / Enter
+        if (gamepad.buttons[0].pressed) {
+            keyPressed["Space"] = true;
+            keyPressed["Enter"] = true;
+        } else {
+            keyPressed["Space"] = false;
+            keyPressed["Enter"] = false;
+        }
+
+        // B 键 -> X / Escape
+        if (gamepad.buttons[1].pressed) {
+            keyPressed["KeyX"] = true;
+            keyPressed["Escape"] = true;
+        } else {
+            keyPressed["KeyX"] = false;
+            keyPressed["Escape"] = false;
+        }
+
+        // X 键 -> Shift
+        if (gamepad.buttons[2].pressed) {
+            keyPressed["ShiftLeft"] = true;
+        } else {
+            keyPressed["ShiftLeft"] = false;
+        }
+    }
+}
+
 function init(){
     if (current_room != temp){
         document.getElementById('chairArrow').style.display = 'none';
@@ -364,6 +444,7 @@ function animate(){
 //init and animate
 function animationLoop() {
     requestAnimationFrame(animationLoop);
+    updateGamepadInput();
     if (die === true){
         gameover.style.display = 'block';
         if (keyPressed['Space'] === true){
