@@ -26,6 +26,7 @@ let pianoElement, pianoResultElement, pianoResult2Element, yesButton5, noButton5
 let musicboxElement, musicboxResultElement, yesButton6, noButton6;
 let saveElement, saveResultElement, yesButton7, noButton7;
 let doorElement, Button;
+let option, XUp;
 
 function deepCopy(obj) {
     if (obj === null || typeof obj !== 'object') {
@@ -43,6 +44,8 @@ function deepCopy(obj) {
 selecting = false;
 endOfRead = false;
 die = false;
+XUp = true;
+option = document.getElementById('optionsDiv');
 gameover = document.getElementById('GameOverDiv');
 selectElement = document.getElementById('select1');
 readElement = document.getElementById('Read');
@@ -272,7 +275,7 @@ let done = {
 }
 
 let items = {
-    'queen': true,
+    'queen': false,
     'king': false,
     'music': false,
 }
@@ -475,6 +478,21 @@ function animationLoop() {
         }
     }
     else if (selecting === false){
+        if (keyPressed['KeyX'] === true && XUp === true){
+            if (option.style.display === 'none'){
+                option.style.display = 'block';
+            }
+            else{
+                option.style.display = 'none';
+            }
+        }
+        for (const key in items){
+            if (items[key] === true){
+                document.getElementById(key).style.display = 'none';
+            } else {
+                document.getElementById(key).style.display = 'block';
+            }
+        }
         init();
         animate();
 
@@ -487,6 +505,13 @@ function animationLoop() {
                 selecting = true;
                 break;
             }
+        }
+        
+        if ('KeyX' in keyPressed && keyPressed['KeyX'] === true){
+            XUp = false;
+        }
+        else{
+            XUp = true;
         }
     }
     else{

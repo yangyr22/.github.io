@@ -105,6 +105,60 @@
             padding: 10px;
             z-index: 10;
         }
+        #optionsDiv queen{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            height: 80%;
+            width: 28%;
+            background-image: url('global/queen.png'); /* 设置背景图片 */
+            background-size: cover; /* 覆盖整个div */
+            background-position: center;
+        }        
+        #optionsDiv king{
+            position: absolute;
+            top: 10px;
+            left: 100px;
+            height: 80%;
+            width: 28%;
+            background-image: url('global/king.png'); /* 设置背景图片 */
+            background-size: cover; /* 覆盖整个div */
+            background-position: center;
+        }           
+        #optionsDiv music{
+            position: absolute;
+            top: 10px;
+            left: 190px;
+            height: 80%;
+            width: 28%;
+            background-image: url('global/king.png'); /* 设置背景图片 */
+            background-size: cover; /* 覆盖整个div */
+            background-position: center;
+        }        
+        #optionsDiv queenmask{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            height: 80%;
+            width: 28%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }        
+        #optionsDiv kingmask{
+            position: absolute;
+            top: 10px;
+            left: 100px;
+            height: 80%;
+            width: 28%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        #optionsDiv musicmask{
+            position: absolute;
+            top: 10px;
+            left: 190px;
+            height: 80%;
+            width: 28%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }        
         #GameOverDiv{
             position: absolute;
             height: 100%;
@@ -145,6 +199,12 @@
         <div id="chairArrow"></div>
     </div>
     <div id="optionsDiv"> 
+        <queen></queen>
+        <king></king>
+        <music></music>
+        <queenmask id="queen"></queenmask>
+        <kingmask id="king"></kingmask>
+        <musicmask id="music"></music>
     </div>
     <div id="room" data-param="value"></div>
     
@@ -318,12 +378,7 @@
         </div>
     </div>
     <script type="module">
-        var current_room = 1;
-        var last_room = 1;
         document.addEventListener('keydown', function(event) {
-            if (event.code === 'KeyX') {
-                window.location.href = 'options.html';
-            }
             if (event.code === 'Escape') {
                 window.location.href = 'index.html';
             }
