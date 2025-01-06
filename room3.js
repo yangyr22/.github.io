@@ -329,7 +329,7 @@ export function stopMusic() {
   }
 }
 
-export function animate_3(current_room, last_room, keyPressed, face_item, message) {
+export function animate_3(current_room, last_room, keyPressed, face_item, message, is_4_locked) {
   let die = false;
   if(chasing === 0 && message === "chasing"){
     stopMusic()
@@ -382,8 +382,12 @@ export function animate_3(current_room, last_room, keyPressed, face_item, messag
         if (face_door_1() && chasing != 1){
           current_room = 2;
         }
-        if (face_door_2() && chasing != 1){
+        if (face_door_2() && chasing != 1 && is_4_locked != true){
           current_room = 4;
+        }
+        if (face_door_2() && chasing != 1 && is_4_locked){
+          console.log(1)
+          face_item['door'] = true;
         }
         if (face_wall()){
           face_item['paper'] = true;

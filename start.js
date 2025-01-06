@@ -6,7 +6,7 @@ import { init_4_deep, animate_4_deep } from './room4_deep.js';
 import { init_5, animate_5 } from './room5.js';
 import { init_6, animate_6 } from './room6.js';
 
-var current_room = 5;
+var current_room = 3;
 var last_room = 2;
 var temp = 0;
 var mid = 0;
@@ -25,6 +25,7 @@ let manElement, womanElement, mirrorElement, plantElement;
 let pianoElement, pianoResultElement, pianoResult2Element, yesButton5, noButton5, yesButton52, noButton52;
 let musicboxElement, musicboxResultElement, yesButton6, noButton6;
 let saveElement, saveResultElement, yesButton7, noButton7;
+let doorElement, Button;
 
 function deepCopy(obj) {
     if (obj === null || typeof obj !== 'object') {
@@ -94,6 +95,9 @@ manElement = document.getElementById('man');
 womanElement = document.getElementById('woman');
 mirrorElement = document.getElementById('mirror');
 plantElement = document.getElementById('plant');
+
+doorElement = document.getElementById('door');
+Button = document.getElementById('Button');
 
 yesButton1.addEventListener('click', function() {
     readElement.style.display = 'flex';
@@ -184,6 +188,12 @@ noButton7.addEventListener('click', function() {
     selecting = false;
 });
 
+
+Button.addEventListener('click', function() {
+    doorElement.style.display = 'none';
+    selecting = false;
+});
+
 yesButton5.addEventListener('click', function() {
     pianoResultElement.style.display = 'flex';
     pianoElement.style.display = 'none';
@@ -230,6 +240,7 @@ let face_item = {
     'piano': false,
     'musicbox': false,
     'cat': false,
+    'door': false,
 };
 let item_content = {
     'book_shelf' : selectElement,
@@ -243,6 +254,7 @@ let item_content = {
     'piano': pianoElement,
     'musicbox': musicboxElement,
     'cat': saveElement,
+    'door': doorElement,
 };
 let done = {
     'book_shelf' : false,
@@ -256,6 +268,7 @@ let done = {
     'piano': false,
     'musicbox': false,
     'cat': false,
+    'door': false,
 }
 
 let items = {
@@ -413,7 +426,7 @@ function animate(){
         mid = info1;
         face_item = info2;
     } else if (current_room === 3) {
-        const [info1, info2, info3, info4] = animate_3(current_room, last_room, keyPressed, face_item, message, items);
+        const [info1, info2, info3, info4] = animate_3(current_room, last_room, keyPressed, face_item, message, items, is_4_locked);
         mid = info1;
         face_item = info2;
         die = info3;
