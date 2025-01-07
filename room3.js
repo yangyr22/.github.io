@@ -375,7 +375,7 @@ function load_items(){
 let audio;
 
 export function stopMusic() {
-  const audioElement = document.getElementById('queen');
+  const audioElement = document.getElementById('queen2');
   if (audioElement) {
     audioElement.pause();
   }
@@ -384,7 +384,7 @@ export function stopMusic() {
 export function animate_3(current_room, keyPressed, face_item, message, is_4_locked) {
   let die = false;
   if(chasing === 0 && message === "chasing"){
-    stopMusic()
+    stopMusic();
     audio = new Audio('audio/loop_65.ogg');
     audio.loop = true; 
     audio.play();
@@ -403,6 +403,11 @@ export function animate_3(current_room, keyPressed, face_item, message, is_4_loc
       message = "";
       chasing = 0;
       scene.remove(ghost);
+      stopMusic();
+      audio.pause();
+      audio = new Audio('audio/queen.ogg');
+      audio.loop = true; 
+      audio.play();
     }
     const position = ghost.position;
     const direction = to_ghost.angle() - Math.PI / 2;
@@ -449,6 +454,7 @@ export function animate_3(current_room, keyPressed, face_item, message, is_4_loc
         if (face_painting()  && chasing != 0){
           chasing = -1;
           audio.pause();
+          stopMusic()
           audio = new Audio('audio/queen.ogg')
           audio.loop = true; 
           audio.play();
@@ -469,7 +475,6 @@ export function animate_3(current_room, keyPressed, face_item, message, is_4_loc
     else{
       shaked = false;
     }
-    console.log(keyPressed);
     if ('Space' in keyPressed && keyPressed['Space'] === true){
       SpaceUp = false;
     }
