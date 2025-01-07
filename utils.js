@@ -25,9 +25,9 @@ export function move(camera, keyPressed){
         camera.rotation.y += 2 * Math.PI;
     }
     if (keyPressed['ShiftLeft']) {
-        moveSpeed = 2.4;
+        moveSpeed = 4;
     }else{
-        moveSpeed = 1.2;
+        moveSpeed = 2;
     }
     const forward = new THREE.Vector3();
     const right = new THREE.Vector3();

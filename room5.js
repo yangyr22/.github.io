@@ -11,6 +11,10 @@ let shakeAmount = 0.05;
 let shakeTimer = 0; 
 let shaked = false;
 let PositionCopy;
+let clock;
+let mixer1, mixer2;
+let open = false;
+let play, playTimer;
 let SpaceUp = true;
 let time = 0;
 let hat, image;
@@ -18,6 +22,7 @@ let hat, image;
 export function init_5(last_room) {
   // Create the scene ************************************************************************************************************************************************
   scene = new THREE.Scene();
+  clock = new THREE.Clock();
 
   // Create the camera
   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 10, 10000);
@@ -29,7 +34,7 @@ export function init_5(last_room) {
   }
   if (last_room === 2){
     camera.position.set(800, 0, 400); // 初始相机位置
-    // camera.rotation.y = Math.PI / 2;
+    camera.rotation.y = Math.PI / 2;
   }
 
   // Create the renderer and add it to the DOM
@@ -132,21 +137,23 @@ export function init_5(last_room) {
     scene.add(textMesh);
   } );
 
-  const ImageTexture = textureLoader.load('room3/blood.png');
+  const ImageTexture = textureLoader.load('room5/image.png');
   const ImageMaterial = new THREE.MeshStandardMaterial({
-      color: 0xff0000,
+      color: 0xbbbbbb,
       map: ImageTexture, // 应用纹理
       metalness: 0.2, // 设置金属度
       roughness: 0.5, // 设置粗糙度
   });
   const ImageGeometry = new THREE.PlaneGeometry(70, 70);
   image = new THREE.Mesh(ImageGeometry, ImageMaterial);
-  image.position.set(720, -10, 60);
+  image.position.set(720, -30, 60);
   scene.add(image);
 
   load_items();
 
   PositionCopy = 0;
+  play = false;
+  playTimer = 0;
   Minimap.style.width = '300px';
   Minimap.style.height = '200px';
   Minimap.style.backgroundImage =  "url('minimap/room5.png')";
@@ -244,7 +251,7 @@ function load_items(){
     },
   );
   loader.load(
-    'room5/window_and_curtains.glb',
+    'room5/window.glb',
     function ( gltf ) {
       gltf.scene.traverse(function (node) {
         if (node.isMesh) {
@@ -256,6 +263,28 @@ function load_items(){
       });
       gltf.scene.scale.set(0.8, 0.8, 0.8);
       gltf.scene.position.set(-450, 200, -470);
+      scene.add(gltf.scene); 
+    },
+  );
+  loader.load(
+    'room5/cortina_animada_curtain_animated.glb',
+    function ( gltf ) {
+      gltf.scene.traverse(function (node) {
+        if (node.isMesh) {
+          node.castShadow = true;
+          node.receiveShadow = true;
+          node.material.emissive = node.material.color; 
+          node.material.emissiveMap = node.material.map; 
+          node.material.emissiveIntensity = 0.2;
+        }
+      });
+      gltf.scene.scale.set(80, 80, 260);
+      gltf.scene.rotation.set(0, Math.PI / 2, 0);
+      gltf.scene.position.set(-450, 0, -430);
+      mixer1 = new THREE.AnimationMixer(gltf.scene);
+      mixer1.clipAction(gltf.animations[0]).play();
+      mixer2 = new THREE.AnimationMixer(gltf.scene);
+      mixer2.clipAction(gltf.animations[1]).play();
       scene.add(gltf.scene); 
     },
   );
@@ -590,7 +619,7 @@ export function animate_5(current_room, last_room, keyPressed, face_item, messag
     const z_copy = camera.position.z;
     camera = move(camera, keyPressed);  
     if (camera.position.x >= 640){
-      image.position.set(camera.position.x, -10, 59);
+      image.position.set(camera.position.x, -13, 59);
       const scale = 1 - (camera.position.z - 250) / 400;
       image.scale.set(scale, scale, scale);
     }
@@ -604,6 +633,10 @@ export function animate_5(current_room, last_room, keyPressed, face_item, messag
         }
         if (face_door_2()){
           current_room = 6;
+        }
+        if (face_window()){
+          play = true;
+          open = true;
         }
         if (face_music() && items['queen']){
           face_item['musicbox'] = true;
@@ -630,6 +663,18 @@ export function animate_5(current_room, last_room, keyPressed, face_item, messag
     }
   } 
   updateCameraArrow();
+  const time2 = clock.getDelta();
+  console.log(playTimer);
+  if (open === false){
+    mixer1.update(time2);
+  } else if (play === true){
+    playTimer += 1;
+    mixer2.update(time2);
+    if (playTimer >= 800){
+        play = false;
+    }
+  }
+  
   renderer.render(scene, camera);
   return [current_room, face_item];
 }
@@ -654,6 +699,15 @@ function face_door_2(){
     return true;
 }
 
+function face_window(){
+  if (camera.position.z >= -200 || Math.abs(camera.position.x + 450) >= 100){
+    return false;
+  }
+  if (camera.rotation.y <=  - Math.PI / 4 || camera.rotation.y >= Math.PI / 4){
+      return false;
+  }
+  return true;
+}
 
 function face_music(){
   if (Math.abs(camera.position.z + 350) >= 50 || Math.abs(camera.position.x + 100) >= 100){
