@@ -13,8 +13,7 @@ let shaked = false;
 let PositionCopy;
 let clock;
 let mixer1, mixer2;
-let open = false;
-let play, playTimer;
+let open, play, playTimer; 
 let SpaceUp = true;
 let time = 0;
 let hat, image;
@@ -152,6 +151,7 @@ export function init_5(last_room) {
   load_items();
 
   PositionCopy = 0;
+  open = false;
   play = false;
   playTimer = 0;
   Minimap.style.width = '300px';
