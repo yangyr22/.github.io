@@ -1,6 +1,7 @@
 import { init_1, animate_1 } from './room1.js';
 import { init_2, animate_2 } from './room2.js';
 import { init_3, animate_3 } from './room3.js';
+import { init_3_easy, animate_3_easy } from './room3_easy.js';
 import { init_4, animate_4 } from './room4.js';
 import { init_4_deep, animate_4_deep } from './room4_deep.js';
 import { init_5, animate_5 } from './room5.js';
@@ -10,6 +11,7 @@ var current_room = 2;
 var last_room = 0;
 var temp = 0;
 var mid = 0;
+let easy = 0;
 let keyPressed = {};
 let message = "";
 let is_4_deep = true;
@@ -40,6 +42,10 @@ function deepCopy(obj) {
     }
     return copy;
 }
+
+const urlParams = new URLSearchParams(window.location.search);
+easy = urlParams.get('easy');
+console.log(easy);
 
 selecting = false;
 endOfRead = false;
@@ -407,7 +413,9 @@ function init(){
             init_1(last_room);
         } else if (current_room === 2) {
             init_2(last_room, room_lit);
-        } else if (current_room === 3) {
+        } else if (current_room === 3 && easy == 1) {
+            init_3_easy(last_room, room_lit);
+        } else if (current_room === 3 && easy == 0) {
             init_3(last_room, room_lit);
         } else if (current_room === 4 && is_4_locked === true) {
             current_room = last_room;
@@ -428,7 +436,7 @@ function init(){
 
 function animate(){
     if (current_room === 1) {
-        const [info1, info2] = animate_1(current_room, last_room, keyPressed, face_item, message, items);
+        const [info1, info2] = animate_1(current_room, keyPressed, face_item, items);
         mid = info1;
         face_item = info2;
     } else if (current_room === 2) {
@@ -438,11 +446,17 @@ function animate(){
                 all_lit = false;
             }
         }
-        const [info1, info2] = animate_2(current_room, last_room, keyPressed, face_item, message, items, all_lit);
+        const [info1, info2] = animate_2(current_room, keyPressed, face_item, all_lit);
         mid = info1;
         face_item = info2;
-    } else if (current_room === 3) {
-        const [info1, info2, info3, info4] = animate_3(current_room, last_room, keyPressed, face_item, message, items, is_4_locked);
+    } else if (current_room === 3 && easy == 1) {
+        const [info1, info2, info3, info4] = animate_3_easy(current_room, keyPressed, face_item, message, is_4_locked);
+        mid = info1;
+        face_item = info2;
+        die = info3;
+        message = info4;
+    } else if (current_room === 3 && easy == 0) {
+        const [info1, info2, info3, info4] = animate_3(current_room, keyPressed, face_item, message, is_4_locked);
         mid = info1;
         face_item = info2;
         die = info3;
@@ -452,7 +466,7 @@ function animate(){
         mid = info1;
         face_item = info2;
     } else if (current_room === 4 && render_deep ===true) {
-        const [info1, info2] = animate_4_deep(current_room, last_room, keyPressed, face_item, message, items);
+        const [info1, info2] = animate_4_deep(current_room, keyPressed, face_item);
         mid = info1;
         face_item = info2;
     } else if (current_room === 5) {

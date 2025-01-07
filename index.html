@@ -73,6 +73,7 @@
     </div>
     <div id="buttonContainer">
         <button id="startButton">Start new game</button>
+        <button id="startButton2">Start easy game</button>
         <button id="optionsButton">Tutorial</button>
         <button id="quitButton">Quit</button>
     </div>
@@ -91,7 +92,17 @@
           const optionsButton = document.getElementById('startButton');
           if (optionsButton) {
             optionsButton.addEventListener('click', function() {
-              window.location.href = 'start.html';
+              window.location.href = 'start.html?easy=0';
+            });
+          } else {
+            console.error('Element with id "startButton" not found.');
+          }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+          const optionsButton = document.getElementById('startButton2');
+          if (optionsButton) {
+            optionsButton.addEventListener('click', function() {
+              window.location.href = 'start.html?easy=1';
             });
           } else {
             console.error('Element with id "startButton" not found.');

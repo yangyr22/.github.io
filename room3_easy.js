@@ -6,7 +6,7 @@ import { FontLoader} from './three.js-dev/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from './three.js-dev/examples/jsm/geometries/TextGeometry.js';
 import { createWall, move } from './utils.js';
 
-let scene, camera, renderer, cameraArrow, Minimap, ghostArrow;
+let scene, camera, renderer, cameraArrow, Minimap;
 let clock;
 let mixers = [];
 let shakeAmount = 0.05;
@@ -14,10 +14,9 @@ let shakeTimer = 0;
 let shaked = false;
 let PositionCopy;
 let SpaceUp = true;
-let chasing, ghost;
 
 
-export function init_3(last_room) {
+export function init_3_easy(last_room) {
   // Create the scene ************************************************************************************************************************************************
   scene = new THREE.Scene();
   clock = new THREE.Clock()
@@ -39,7 +38,6 @@ export function init_3(last_room) {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
   cameraArrow = document.getElementById('cameraArrow');
-  ghostArrow = document.getElementById('ghostArrow');
   Minimap = document.getElementById('minimapDiv');
 
   // Add lights to the scene
@@ -204,25 +202,10 @@ export function init_3(last_room) {
   Minimap.style.width =  "240px";
   Minimap.style.height = '200px';
   Minimap.style.backgroundImage =  "url('minimap/room3.png')";
-  chasing = 0;
 }
 
 function load_items(){
     const loader = new GLTFLoader();
-    loader.load(
-      'room3/ghost_in_a_white_sheet.glb',
-      function ( gltf ) {
-        gltf.scene.traverse(function (node) {
-          if (node.isMesh) {
-            node.castShadow = true;
-            node.receiveShadow = true;
-          }
-        });
-        gltf.scene.scale.set(160, 160, 160);
-        gltf.scene.position.set(-150, 0, -400);
-        ghost = gltf.scene;
-      },
-    );
     loader.load(
       'room3/halloween_pumpkin.glb',
       function ( gltf ) {
@@ -381,39 +364,8 @@ export function stopMusic() {
   }
 }
 
-export function animate_3(current_room, keyPressed, face_item, message, is_4_locked) {
+export function animate_3_easy(current_room, keyPressed, face_item, message, is_4_locked) {
   let die = false;
-  if(chasing === 0 && message === "chasing"){
-    stopMusic()
-    audio = new Audio('audio/loop_65.ogg');
-    audio.loop = true; 
-    audio.play();
-    chasing = 1;
-    scene.add(ghost);
-    ghostArrow.style.display = 'block';
-  }
-  if (chasing === 1){
-    const to_ghost = new THREE.Vector2(ghost.position.x - camera.position.x, ghost.position.z - camera.position.z);
-    const dist = to_ghost.length();
-    ghost.position.x += (camera.position.x - ghost.position.x) / dist;
-    ghost.position.z += (camera.position.z - ghost.position.z) / dist;
-    ghost.rotation.y = - to_ghost.angle() - Math.PI / 2;
-    if (to_ghost.length() <= 100){
-      die = true;
-      message = "";
-      chasing = 0;
-      scene.remove(ghost);
-    }
-    const position = ghost.position;
-    const direction = to_ghost.angle() - Math.PI / 2;
-    
-    const arrowX = position.x / 5 + 130;
-    const arrowY = position.z / 4.5 + 110;
-    ghostArrow.style.left = arrowX + 'px';
-    ghostArrow.style.top = arrowY + 'px';
-    const rotation = `rotate(${direction}rad)`;
-    ghostArrow.style.transform = `translate(-50%, -50%) ${rotation}`;
-  }
   if (shakeTimer > 0) {
     shakeTimer--;
     camera.rotation.x += (Math.random() - 0.5) * shakeAmount;
@@ -431,13 +383,13 @@ export function animate_3(current_room, keyPressed, face_item, message, is_4_loc
     camera = move(camera, keyPressed);
     if (keyPressed['Space']){
       if (SpaceUp === true) {
-        if (face_door_1() && chasing != 1){
+        if (face_door_1()){
           current_room = 2;
         }
-        if (face_door_2() && chasing != 1 && is_4_locked != true){
+        if (face_door_2() && is_4_locked != true){
           current_room = 4;
         }
-        if (face_door_2() && chasing != 1 && is_4_locked){
+        if (face_door_2() && is_4_locked){
           face_item['door'] = true;
         }
         if (face_wall()){
@@ -445,15 +397,6 @@ export function animate_3(current_room, keyPressed, face_item, message, is_4_loc
         }
         if (face_pumpkin()){
           face_item['pumpkin'] = true;
-        }
-        if (face_painting()  && chasing != 0){
-          chasing = -1;
-          audio.pause();
-          audio = new Audio('audio/queen.ogg')
-          audio.loop = true; 
-          audio.play();
-          ghost.position.y = -500;
-          ghostArrow.style.display = 'none';
         }
       }
     }
@@ -469,7 +412,6 @@ export function animate_3(current_room, keyPressed, face_item, message, is_4_loc
     else{
       shaked = false;
     }
-    console.log(keyPressed);
     if ('Space' in keyPressed && keyPressed['Space'] === true){
       SpaceUp = false;
     }
@@ -506,16 +448,6 @@ function face_door_2(){
         return false;
     }
     return true;
-}
-
-function face_painting(){
-  if (camera.position.z >= -350 || Math.abs(camera.position.x + 30) >= 50){
-      return false;
-  }
-  if (camera.rotation.y >= Math.PI / 4 || camera.rotation.y <= - Math.PI / 4){
-      return false;
-  }
-  return true;
 }
 
 function face_wall(){

@@ -231,7 +231,7 @@ function load_items(){
   );
 }
 
-export function animate_4_deep(current_room, last_room, keyPressed, face_item, message) {
+export function animate_4_deep(current_room, keyPressed, face_item) {
   if (shakeTimer > 0) {
     shakeTimer--;
     camera.rotation.x += (Math.random() - 0.5) * shakeAmount;

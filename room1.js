@@ -69,26 +69,6 @@ export function init_1(last_room) {
     roughness: 0.5, // 设置粗糙度
   });
 
-  const FontTexture = textureLoader.load('global/font.jpg');
-  
-  const FontMaterial = new THREE.MeshStandardMaterial({
-      color: 0xff0000,
-      map: FontTexture, // 应用纹理
-      metalness: 0.2, // 设置金属度
-      roughness: 0.5, // 设置粗糙度
-  });
-
-  
-  const paperTexture = textureLoader.load('global/paper.png');
-  
-  const paperMaterial = new THREE.MeshStandardMaterial({
-      color: 0xffffff,
-      map: paperTexture, // 应用纹理
-      metalness: 0.2, // 设置金属度
-      roughness: 0.5, // 设置粗糙度
-      transparent: true 
-  });
-
   const groundGeometry = new THREE.PlaneGeometry(1000, 1000);
   const ground1 = new THREE.Mesh(groundGeometry, groundMaterial);
   ground1.rotation.x = -Math.PI / 2; 
@@ -101,19 +81,33 @@ export function init_1(last_room) {
   carpet.position.y = -198;
   scene.add(carpet);
 
-  const paperGeometry = new THREE.PlaneGeometry(300, 200);
-  const paper = new THREE.Mesh(paperGeometry, paperMaterial);
-  paper.position.set(0, 100, -499);
-  scene.add(paper);
-
   scene.add(createWall(new THREE.Vector2(-500, 500), new THREE.Vector2(-500, -500), WallMaterial));
   scene.add(createWall(new THREE.Vector2(-500, -500), new THREE.Vector2(500, -500), WallMaterial));
   scene.add(createWall(new THREE.Vector2(500, -500), new THREE.Vector2(500, 500), WallMaterial));
   scene.add(createWall(new THREE.Vector2(500, 500), new THREE.Vector2(-500, 500), WallMaterial));
 
-  
-  const loader = new FontLoader();
+  const paperTexture = textureLoader.load('global/paper.png');
+  const paperMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      map: paperTexture, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+      transparent: true 
+  });
+  const FontTexture = textureLoader.load('global/font.jpg');
+  const FontMaterial = new THREE.MeshStandardMaterial({
+      color: 0xff0000,
+      map: FontTexture, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+  });
 
+  const paperGeometry = new THREE.PlaneGeometry(300, 200);
+  const paper = new THREE.Mesh(paperGeometry, paperMaterial);
+  paper.position.set(0, 100, -499);
+  scene.add(paper);
+
+  const loader = new FontLoader();
   loader.load( './global/lvyao_Regular.json', function ( font ) {
     const geometry = new TextGeometry( '你没有弹琴\n的必要吧？', {
       font: font,
@@ -273,7 +267,7 @@ function load_items(){
   );
 }
 
-export function animate_1(current_room, last_room, keyPressed, face_item, message, items) {
+export function animate_1(current_room, keyPressed, face_item, items) {
   if (shakeTimer > 0) {
     shakeTimer--;
     camera.rotation.x += (Math.random() - 0.5) * shakeAmount;
