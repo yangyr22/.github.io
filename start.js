@@ -45,7 +45,6 @@ function deepCopy(obj) {
 
 const urlParams = new URLSearchParams(window.location.search);
 easy = urlParams.get('easy');
-console.log(easy);
 
 selecting = false;
 endOfRead = false;
@@ -188,11 +187,11 @@ noButton6.addEventListener('click', function() {
 yesButton7.addEventListener('click', function() {
     saveResultElement.style.display = 'flex';
     saveElement.style.display = 'none';
-    save_done = done;
+    save_done = deepCopy(done);
     save_is_4_deep = is_4_deep;
     save_is_4_locked = is_4_locked;
-    save_items = items;
-    save_room_lit = room_lit;
+    save_items = deepCopy(items);
+    save_room_lit = deepCopy(room_lit);
     endOfRead = true;
 });
 noButton7.addEventListener('click', function() {
@@ -254,6 +253,7 @@ let face_item = {
     'musicbox': false,
     'cat': false,
     'door': false,
+    'clock2': false,
 };
 let item_content = {
     'book_shelf' : selectElement,
@@ -268,6 +268,7 @@ let item_content = {
     'musicbox': musicboxElement,
     'cat': saveElement,
     'door': doorElement,
+    'clock2': clock2Element,
 };
 let done = {
     'book_shelf' : false,
@@ -282,6 +283,7 @@ let done = {
     'musicbox': false,
     'cat': false,
     'door': false,
+    'clock2': false,
 }
 
 let items = {
@@ -483,7 +485,7 @@ function animate(){
         current_room = mid;
     }
 }
-
+let audio;
 //init and animate
 function animationLoop() {
     requestAnimationFrame(animationLoop);
@@ -491,6 +493,7 @@ function animationLoop() {
     if (die === true){
         gameover.style.display = 'block';
         if (keyPressed['Space'] === true){
+            
             die = false;
             gameover.style.display = 'none';
             done = deepCopy(save_done);
