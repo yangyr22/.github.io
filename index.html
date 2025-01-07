@@ -73,8 +73,7 @@
     </div>
     <div id="buttonContainer">
         <button id="startButton">Start new game</button>
-        <button id="loadButton">Load</button>
-        <button id="optionsButton">Options</button>
+        <button id="optionsButton">Tutorial</button>
         <button id="quitButton">Quit</button>
     </div>
     <script type="module">
@@ -99,27 +98,15 @@
           }
         });
         document.addEventListener('DOMContentLoaded', function() {
-    const optionsButton = document.getElementById('startButton');
-    if (optionsButton) {
-        optionsButton.addEventListener('click', function() {
-            const menObject = scene.getObjectByName('medieval-house-2', true);
-            if (menObject) {
-                menObject.rotation.y = 0;
-                const scaleUp = () => {
-                    menObject.scale.x += 0.01;
-                    menObject.scale.y += 0.01;
-                    menObject.scale.z += 0.01;
-                    if (menObject.scale.x < 2) {
-                        requestAnimationFrame(scaleUp);
-                    }
-                };
-                requestAnimationFrame(scaleUp);
-            }
+          const optionsButton = document.getElementById('quitButton');
+          if (optionsButton) {
+            optionsButton.addEventListener('click', function() {
+              window.history.back();
+            });
+          } else {
+            console.error('Element with id "startButton" not found.');
+          }
         });
-    } else {
-        console.error('Element with id "startButton" not found.');
-    }
-});
     </script>
     <audio id="mainpage" src="audio/mainpage.ogg" autoplay loop></audio>
     <script>

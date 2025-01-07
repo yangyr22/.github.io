@@ -369,7 +369,7 @@ function load_items(room_lit){
   );
 }
 
-export function animate_2(current_room, last_room, keyPressed, face_item, message) {
+export function animate_2(current_room, last_room, keyPressed, face_item, message, all_lit) {
   if (shakeTimer > 0) {
     shakeTimer--;
     camera.rotation.x += (Math.random() - 0.5) * shakeAmount;
@@ -397,6 +397,13 @@ export function animate_2(current_room, last_room, keyPressed, face_item, messag
         }
         if (face_door_3()){
           current_room = 5;
+        }
+        if (face_door_4()){
+          if (all_lit === true){
+            window.location.href = 'success.html';
+          } else {
+            face_item['door'] = true;
+          }
         }
         if (face_cat()){
           face_item['cat'] = true;
@@ -464,6 +471,17 @@ function face_door_3(){
       return false;
   }
   if (camera.rotation.y >= 3 * Math.PI / 4 || camera.rotation.y <= Math.PI / 4){
+      return false;
+  }
+  return true;
+}
+
+
+function face_door_4(){
+  if (Math.abs(camera.position.x) >= 100 || camera.position.z <= 600){
+      return false;
+  }
+  if (camera.rotation.y <= 3 * Math.PI / 4 && camera.rotation.y >= -3 * Math.PI / 4){
       return false;
   }
   return true;

@@ -139,6 +139,58 @@ export function init_3(last_room) {
     scene.add(textMesh);
   } );
 
+  const paintingTexture1 = textureLoader.load('room3/red.png');
+  const paintingMaterial1 = new THREE.MeshStandardMaterial({
+      color: 0xdddddd,
+      map: paintingTexture1, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+      transparent: true 
+  });
+  const paintingGeometry1 = new THREE.PlaneGeometry(100, 150);
+  const painting1 = new THREE.Mesh(paintingGeometry1, paintingMaterial1);
+  painting1.position.set(-200, 50, -445);
+  scene.add(painting1);
+
+  const paintingTexture2 = textureLoader.load('room3/silver.png');
+  const paintingMaterial2 = new THREE.MeshStandardMaterial({
+      color: 0xdddddd,
+      map: paintingTexture2, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+      transparent: true 
+  });
+  const paintingGeometry2 = new THREE.PlaneGeometry(100, 150);
+  const painting2 = new THREE.Mesh(paintingGeometry2, paintingMaterial2);
+  painting2.position.set(-30, 50, -445);
+  scene.add(painting2);
+
+  const paintingTexture3 = textureLoader.load('room3/black.png');
+  const paintingMaterial3 = new THREE.MeshStandardMaterial({
+      color: 0xdddddd,
+      map: paintingTexture3, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+      transparent: true 
+  });
+  const paintingGeometry3 = new THREE.PlaneGeometry(100, 150);
+  const painting3 = new THREE.Mesh(paintingGeometry3, paintingMaterial3);
+  painting3.position.set(310, 50, -445);
+  scene.add(painting3);
+
+  const paintingTexture4 = textureLoader.load('room3/gold.png');
+  const paintingMaterial4 = new THREE.MeshStandardMaterial({
+      color: 0xdddddd,
+      map: paintingTexture4, // 应用纹理
+      metalness: 0.2, // 设置金属度
+      roughness: 0.5, // 设置粗糙度
+      transparent: true 
+  });
+  const paintingGeometry4 = new THREE.PlaneGeometry(100, 150);
+  const painting4 = new THREE.Mesh(paintingGeometry4, paintingMaterial4);
+  painting4.position.set(480, 50, -445);
+  scene.add(painting4);
+
   scene.add(createWall(new THREE.Vector2(-600, 450), new THREE.Vector2(-600, -150), WallMaterial));
   scene.add(createWall(new THREE.Vector2(-600, -150), new THREE.Vector2(-300, -150), WallMaterial));
   scene.add(createWall(new THREE.Vector2(-300, -150), new THREE.Vector2(-300, -450), WallMaterial));
@@ -457,7 +509,7 @@ function face_door_2(){
 }
 
 function face_painting(){
-  if (camera.position.z >= -350 || Math.abs(camera.position.x + 200) >= 50){
+  if (camera.position.z >= -350 || Math.abs(camera.position.x + 30) >= 50){
       return false;
   }
   if (camera.rotation.y >= Math.PI / 4 || camera.rotation.y <= - Math.PI / 4){
@@ -467,7 +519,7 @@ function face_painting(){
 }
 
 function face_wall(){
-  if (camera.position.z <= 350 || Math.abs(camera.position.x + 150) >= 100){
+  if (camera.position.z <= 350 || Math.abs(camera.position.x + 30) >= 100){
       return false;
   }
   if (camera.rotation.y <= 3 * Math.PI / 4 && camera.rotation.y >= - 3 * Math.PI / 4){

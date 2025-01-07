@@ -6,8 +6,8 @@ import { init_4_deep, animate_4_deep } from './room4_deep.js';
 import { init_5, animate_5 } from './room5.js';
 import { init_6, animate_6 } from './room6.js';
 
-var current_room = 3;
-var last_room = 2;
+var current_room = 2;
+var last_room = 0;
 var temp = 0;
 var mid = 0;
 let keyPressed = {};
@@ -26,7 +26,7 @@ let pianoElement, pianoResultElement, pianoResult2Element, yesButton5, noButton5
 let musicboxElement, musicboxResultElement, yesButton6, noButton6;
 let saveElement, saveResultElement, yesButton7, noButton7;
 let doorElement, Button;
-let option, XUp;
+let option,minimap, XUp;
 
 function deepCopy(obj) {
     if (obj === null || typeof obj !== 'object') {
@@ -46,6 +46,7 @@ endOfRead = false;
 die = false;
 XUp = true;
 option = document.getElementById('optionsDiv');
+minimap = document.getElementById('minimapDiv');
 gameover = document.getElementById('GameOverDiv');
 selectElement = document.getElementById('select1');
 readElement = document.getElementById('Read');
@@ -130,6 +131,7 @@ yesButton22.addEventListener('click', function() {
     clock2Element.style.display = 'none';
     endOfRead = true;
     room_lit[1] = true;
+    items['king'] = false;
 });
 noButton22.addEventListener('click', function() {
     clock2Element.style.display = 'none';
@@ -169,6 +171,7 @@ yesButton6.addEventListener('click', function() {
     room_lit[2] = true;
     endOfRead = true;
     done['musicbox'] = true;
+    items['queen'] = false;
 });
 noButton6.addEventListener('click', function() {
     musicboxElement.style.display = 'none';
@@ -200,8 +203,9 @@ Button.addEventListener('click', function() {
 yesButton5.addEventListener('click', function() {
     pianoResultElement.style.display = 'flex';
     pianoElement.style.display = 'none';
+    items['music'] = false;
 });
-noButton4.addEventListener('click', function() {
+noButton5.addEventListener('click', function() {
     pianoElement.style.display = 'none';
     selecting = false;
 });
@@ -368,19 +372,15 @@ function updateGamepadInput() {
         // A 键 -> 空格 / Enter
         if (gamepad.buttons[0].pressed) {
             keyPressed["Space"] = true;
-            keyPressed["Enter"] = true;
         } else {
             keyPressed["Space"] = false;
-            keyPressed["Enter"] = false;
         }
 
         // B 键 -> X / Escape
         if (gamepad.buttons[1].pressed) {
             keyPressed["KeyX"] = true;
-            keyPressed["Escape"] = true;
         } else {
             keyPressed["KeyX"] = false;
-            keyPressed["Escape"] = false;
         }
 
         // X 键 -> Shift
@@ -388,6 +388,13 @@ function updateGamepadInput() {
             keyPressed["ShiftLeft"] = true;
         } else {
             keyPressed["ShiftLeft"] = false;
+        }
+
+        
+        if (gamepad.buttons[3].pressed) {
+            keyPressed["Escape"] = true;
+        } else {
+            keyPressed["Escape"] = false;
         }
     }
 }
@@ -425,7 +432,13 @@ function animate(){
         mid = info1;
         face_item = info2;
     } else if (current_room === 2) {
-        const [info1, info2] = animate_2(current_room, last_room, keyPressed, face_item, message, items);
+        let all_lit = true;
+        for (const key in room_lit){
+            if (room_lit[key] === false){
+                all_lit = false;
+            }
+        }
+        const [info1, info2] = animate_2(current_room, last_room, keyPressed, face_item, message, items, all_lit);
         mid = info1;
         face_item = info2;
     } else if (current_room === 3) {
@@ -481,9 +494,11 @@ function animationLoop() {
         if (keyPressed['KeyX'] === true && XUp === true){
             if (option.style.display === 'none'){
                 option.style.display = 'block';
+                minimap.style.display = 'block';
             }
             else{
                 option.style.display = 'none';
+                minimap.style.display = 'none';
             }
         }
         for (const key in items){
