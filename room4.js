@@ -174,7 +174,8 @@ export function animate_4(current_room, last_room, keyPressed, face_item, messag
     const z_copy = camera.position.z;
     camera = move(camera, keyPressed); 
     if (cam_locked === true){
-        camera.position.set(0, 100, 100);
+        camera.position.x = x_copy;
+        camera.position.z = z_copy;
     }
     if (keyPressed['Space']){
       if (SpaceUp === true) {
